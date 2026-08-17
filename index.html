@@ -63,8 +63,8 @@
     #story { background-color: var(--cream); }
     .story__bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.55; }
     .story__content { position:relative; z-index: 2; width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 6vw; }
-    .story__img-wrap { position: relative; width: min(60vw, 820px); height: clamp(90px, 12vw, 160px); margin-bottom: 55px; transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), margin-bottom 1.2s ease; }
-    .story__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity 1.3s ease; }
+    .story__img-wrap { position: relative; width: min(60vw, 820px); height: clamp(90px, 12vw, 160px); margin-left: auto; margin-right: auto; margin-bottom: 55px; transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), margin-bottom 1.2s ease; }
+    .story__img { position: absolute; top: 0; left: 50%; width: 100%; height: 100%; object-fit: contain; object-position: center center; transform: translateX(-50%); opacity: 0; transition: opacity 1.3s ease; }
     .s2-step1 .story__img--spread { opacity: 1; }
     .s2-step2 .story__img--spread { opacity: 0; }
     .s2-step2 .story__img--condensed,
@@ -186,6 +186,8 @@
     .product-card img { width: 100%; height: 350px; object-fit: cover; margin-bottom: 30px; background: #eee; }
     .product-card h3 { font-family: 'Noto Serif KR'; font-size: 1.65rem; color: var(--deep-grey); margin-bottom: 15px; font-weight: 300; }
     .product-card p { font-family: 'Noto Serif KR'; font-size: 0.98rem; color: #777; line-height: 1.8; }
+    .product-spec { margin-top: 24px; padding-top: 18px; border-top: 1px solid #eee; font-family: 'Noto Sans KR'; font-size: 0.85rem; line-height: 1.8; color: #888; letter-spacing: 0.02em; }
+    .product-spec strong { font-family: 'Montserrat'; font-size: 1rem; font-weight: 500; color: var(--deep-grey); }
     .product-summary-wrap.active .product-card { opacity: 1; transform: translateY(0); }
     .product-summary-wrap.active .product-card:nth-child(1) { transition-delay: 0.15s; }
     .product-summary-wrap.active .product-card:nth-child(2) { transition-delay: 0.3s; }
@@ -198,7 +200,7 @@
     .product-gift-wrap.active .gift-header { opacity: 1; transform: translateY(0); }
     .gift-header h4 { font-family: 'Montserrat'; font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: #999; margin-bottom: 14px; }
     .gift-header p { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 1.15rem; color: var(--deep-grey); }
-    .gift-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; width: 90vw; max-width: 1300px; margin-bottom: 40px; }
+    .gift-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; width: 90vw; max-width: 1300px; margin-bottom: 40px; }
     .gift-card { background: #fff; padding: 32px 26px; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); opacity: 0; transform: translateY(20px); transition: 1s ease; }
     .product-gift-wrap.active .gift-card { opacity: 1; transform: translateY(0); }
     .product-gift-wrap.active .gift-card:nth-child(1) { transition-delay: 0.1s; }
@@ -222,6 +224,10 @@
     .scent__content { position: relative; z-index: 10; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
     .scent__intro h2 { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 2.6rem; line-height: 1.6; margin-bottom: 25px; color: #fff; opacity: 0; transform: translateY(20px); transition: 1.2s ease; }
     .scent__intro p { font-family: 'Noto Serif KR'; font-weight: 200; font-size: 1.2rem; color: rgba(255,255,255,0.7); opacity: 0; transform: translateY(20px); transition: 1.2s ease 0.3s; }
+    .scent__intro-rule { font-family: 'Montserrat', 'Noto Sans KR', sans-serif; font-size: 1rem; letter-spacing: 0.08em; margin: 28px 0 18px; color: rgba(255,255,255,0.85); }
+    .scent__intro-rule span { padding: 8px 18px; border: 1px solid rgba(255,255,255,0.3); border-radius: 2px; margin: 0 3px; display: inline-block; }
+    .scent__intro-rule b { padding: 0 8px; font-weight: 400; display: inline-block; }
+
     .active .scent__intro h2, .active .scent__intro p { opacity: 1; transform: translateY(0); }
     .scent__name { font-family: 'Noto Serif KR'; font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 500; margin-bottom: 20px; opacity: 0; transform: translateY(30px); transition: 1s ease; }
     .scent__desc { font-family: 'Noto Serif KR'; font-size: 1.3rem; font-weight: 200; color: rgba(255,255,255,0.85); margin-bottom: 60px; opacity: 0; transform: translateY(20px); transition: 1s ease 0.3s; }
@@ -451,9 +457,9 @@
     <!-- step 2: 카드 요약 3종 -->
     <div class="product-summary-wrap" id="pv-4">
       <div class="lineup-container">
-        <div class="product-card"><img src="PRODUCT_01.jpg"><h3>Diffuser 100ml</h3><p>나만의 밀도 있는 공간을 위한<br>가장 합리적인 럭셔리의 시작</p></div>
-        <div class="product-card"><img src="PRODUCT_02.jpg"><h3>Diffuser 200ml</h3><p>공간의 첫인상을 결정하는<br>리빈느 시그니처 대용량 디퓨저</p></div>
-        <div class="product-card"><img src="PRODUCT_03.jpg"><h3>Room Spray 50ml</h3><p>언제 어디서든 즉각적으로<br>분위기를 전환하는 프래그런스</p></div>
+        <div class="product-card"><img src="PRODUCT_01.jpg"><h3>Diffuser 100ml</h3><p>나만의 밀도 있는 공간을 위한<br>가장 합리적인 럭셔리의 시작</p><div class="product-spec">디퓨저 100ml (3향)<br><strong>19,000원</strong></div></div>
+        <div class="product-card"><img src="PRODUCT_02.jpg"><h3>Diffuser 200ml</h3><p>공간의 첫인상을 결정하는<br>리빈느 시그니처 대용량 디퓨저</p><div class="product-spec">디퓨저 200ml (3향)<br><strong>29,000원</strong></div></div>
+        <div class="product-card"><img src="PRODUCT_03.jpg"><h3>Room Spray 50ml</h3><p>언제 어디서든 즉각적으로<br>분위기를 전환하는 프래그런스</p><div class="product-spec">룸스프레이 50ml (1향)<br><strong>9,900원</strong></div></div>
       </div>
     </div>
 
@@ -472,16 +478,7 @@
           </ul>
         </div>
         <div class="gift-card">
-          <h3>가격</h3>
-          <ul>
-            <li>디퓨저 200ml — ₩29,900</li>
-            <li>디퓨저 100ml — ₩19,900</li>
-            <li>룸스프레이 50ml — ₩9,900 (오프라인 단독)</li>
-          </ul>
-          <p class="gift-note">카카오톡 선물하기에서 부담 없이 결제되는 구간</p>
-        </div>
-        <div class="gift-card">
-          <h3>시즌</h3>
+          <h3>출시 타겟 시즌</h3>
           <ul>
             <li>추석 (10월 초) — 부모님·친지 선물</li>
             <li>크리스마스·연말 (12월) — 연인·친구 선물</li>
@@ -495,7 +492,7 @@
           <p class="gift-note">마음을 전하고 싶은 날</p>
         </div>
       </div>
-      <p class="gift-bonus">선물 구매자 전원, 리빈느 쇼핑백 증정</p>
+      <p class="gift-bonus">선물하기 구매자 전원, 리빈느 쇼핑백 증정</p>
     </div>
   </section>
 
@@ -505,23 +502,16 @@
   <!-- ──────────────────────────────────────────── -->
   <section class="section" id="scent">
     <div class="section-headline">06. Scent Experience</div>
-    <div class="scent-step-wrap" id="scent-naming">
-      <div class="scent__content">
-        <div class="scent__naming">
-          <span class="scent__naming-label">Naming Story</span>
-          <h2 class="scent__naming-formula">LIVE + LINE</h2>
-          <p class="scent__naming-desc">살다(Live)와 잇다·선(Line)의 결합</p>
-          <div class="scent__naming-divider"></div>
-          <p class="scent__naming-rule"><span>시간 · 날씨 · 계절</span>+<span>장소</span></p>
-          <p class="scent__naming-note">공간에 대한 기억을 데려오는 향.<br>시간이 흐를수록 삶과 함께 깊어지는 향을 지향합니다.</p>
-        </div>
-      </div>
-    </div>
     <div class="scent-step-wrap" id="scent-intro">
       <div class="scent__content">
         <div class="scent__intro">
           <h2>공간의 경계를 허무는 기억의 향기</h2>
-          <p>물리적인 공간을 넘어 당신이 사랑하는 기억 속 장소로 안내합니다</p>
+          <div class="scent__intro-rule">
+  <span>시간 · 날씨 · 계절</span>
+  <b>+</b>
+  <span>장소</span>
+</div>
+          <p>공간에 대한 기억을 데려오는 향.<br>당신이 사랑하는 기억 속 장소로 안내합니다</p>
         </div>
       </div>
     </div>
@@ -569,10 +559,10 @@
    * [2] target    : 5  (페르소나 1~3 + 포지셔닝 4~5)
    * [3] identity  : 3
    * [4] product   : 3  (1: 대표영상 / 2: 카드요약 / 3: 기프트 적합성)
-   * [5] scent     : 5  (1: 네이밍 스토리 / 2: 인트로 / 3~5: 향 3종)
+   * [5] scent     : 4  (1: 인트로 + 네이밍 핵심 / 2~4: 향 3종)
    * [6] vote      : 0
    */
-  const maxSteps = [3, 3, 5, 3, 3, 5, 0];
+  const maxSteps = [3, 3, 5, 3, 3, 4, 0];
 
   /* ── 휠 이벤트 ── */
   window.addEventListener('wheel', (e) => {
@@ -699,10 +689,9 @@
         document.body.className = 'on-light';
       }
     }
-    /* [06] scent — 5 steps
-     *  1 : 향 네이밍 스토리 (LIVE+LINE, Naming Formula)
-     *  2 : 인트로
-     *  3~5 : 향 3종
+    /* [06] scent — 4 steps
+     *  1 : 인트로 + Naming Story 핵심 메시지
+     *  2~4 : 향 3종
      */
     if (sec.id === 'scent') {
       const steps = sec.querySelectorAll('.scent-step-wrap');
@@ -710,13 +699,11 @@
       const vids = sec.querySelectorAll('video');
       vids.forEach(v => v.pause());
 
-      if (currentStep === 1) {
-        steps[0].classList.add('active'); // 네이밍 스토리
-      } else if (currentStep === 2) {
-        steps[1].classList.add('active'); // 인트로
-      } else if (currentStep >= 3 && currentStep <= 5) {
+      if (currentStep >= 1 && currentStep <= 4) {
         steps[currentStep - 1].classList.add('active');
-        vids[currentStep - 3].play();
+        if (currentStep >= 2) {
+          vids[currentStep - 2].play();
+        }
       }
     }
 
