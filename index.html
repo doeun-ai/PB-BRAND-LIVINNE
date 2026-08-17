@@ -125,16 +125,24 @@
     .tg-active-5 .brand-chip:not(.chip-livinne) { opacity: 0.35; transform: scale(0.9); filter: grayscale(0.5) blur(1px); }
     .tg-active-5 .chip-livinne { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
-    /* SECTION 4 - IDENTITY */
+    /* SECTION 4 - IDENTITY (부드러운 페이드 트랜지션 보완) */
     #identity { background-color: #ffffff; }
     .id-step { 
       position: absolute; inset: 0; width: 100%; height: 100%; 
-      opacity: 0; visibility: hidden; 
-      transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); 
+      opacity: 0; 
+      visibility: hidden; 
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s; 
       display: flex; flex-direction: column; align-items: center; justify-content: center; 
       padding: 90px 8vw 40px; 
     }
-    .id-step.active { opacity: 1; visibility: visible; }
+    .id-step.active { 
+      opacity: 1; 
+      visibility: visible; 
+      pointer-events: auto;
+      transform: translateY(0);
+    }
     .id-header { width: 100%; max-width: 1200px; margin-bottom: 25px; text-align: center; }
     .id-header h4 { font-family: 'Montserrat'; font-size: 0.9rem; letter-spacing: 0.3em; text-transform: uppercase; color: #bbb; margin-bottom: 10px; }
     .id-header p { font-family: 'Noto Sans KR'; font-size: 0.95rem; font-weight: 300; color: #777; line-height: 1.6; }
@@ -346,7 +354,7 @@
     </div>
   </section>
 
-  <!-- 04. IDENTITY (설명 문구 추가 완료) -->
+  <!-- 04. IDENTITY -->
   <section class="section" id="identity">
     <div class="section-headline">04. Brand Identity</div>
 
