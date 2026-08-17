@@ -191,6 +191,27 @@
     .product-summary-wrap.active .product-card:nth-child(2) { transition-delay: 0.3s; }
     .product-summary-wrap.active .product-card:nth-child(3) { transition-delay: 0.45s; }
 
+    /* SECTION 5 - COLLECTION : 기프트 적합성 (신규) */
+    .product-gift-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; background-color: #f4f4f4; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 6vw; }
+    .product-gift-wrap.active { opacity: 1; pointer-events: auto; }
+    .gift-header { text-align: center; margin-bottom: 50px; opacity: 0; transform: translateY(20px); transition: all 1s ease; }
+    .product-gift-wrap.active .gift-header { opacity: 1; transform: translateY(0); }
+    .gift-header h4 { font-family: 'Montserrat'; font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: #999; margin-bottom: 14px; }
+    .gift-header p { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 1.15rem; color: var(--deep-grey); }
+    .gift-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; width: 90vw; max-width: 1300px; margin-bottom: 40px; }
+    .gift-card { background: #fff; padding: 32px 26px; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); opacity: 0; transform: translateY(20px); transition: 1s ease; }
+    .product-gift-wrap.active .gift-card { opacity: 1; transform: translateY(0); }
+    .product-gift-wrap.active .gift-card:nth-child(1) { transition-delay: 0.1s; }
+    .product-gift-wrap.active .gift-card:nth-child(2) { transition-delay: 0.2s; }
+    .product-gift-wrap.active .gift-card:nth-child(3) { transition-delay: 0.3s; }
+    .product-gift-wrap.active .gift-card:nth-child(4) { transition-delay: 0.4s; }
+    .gift-card h3 { font-family: 'Noto Serif KR'; font-weight: 400; font-size: 1.15rem; color: var(--deep-grey); margin-bottom: 16px; }
+    .gift-card ul { list-style: none; }
+    .gift-card li { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 0.92rem; line-height: 1.8; color: #666; margin-bottom: 6px; }
+    .gift-note { font-family: 'Noto Sans KR'; font-weight: 300; font-size: 0.8rem; color: #999; margin-top: 14px; }
+    .gift-bonus { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 1rem; letter-spacing: 0.05em; color: var(--deep-grey); opacity: 0; transform: translateY(15px); transition: all 1s ease 0.5s; }
+    .product-gift-wrap.active .gift-bonus { opacity: 1; transform: translateY(0); }
+
     /* SECTION 6 - SCENT */
     #scent { background-color: #000; color: #fff; }
     .scent-step-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; }
@@ -209,6 +230,17 @@
     .note__label { font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 0.4em; color: rgba(255,255,255,0.4); margin-bottom: 25px; text-transform: uppercase; }
     .note__list { font-family: 'Noto Serif KR'; font-size: 1.1rem; font-weight: 300; line-height: 2; color: rgba(255,255,255,0.9); }
     .active .scent__name, .active .scent__desc, .active .note__grid { opacity: 1; transform: translateY(0); }
+
+    /* SECTION 6 - SCENT : 향 네이밍 (신규, 초반 스텝) */
+    .scent__naming { max-width: 640px; opacity: 0; transform: translateY(20px); transition: 1.2s ease; }
+    .active .scent__naming { opacity: 1; transform: translateY(0); }
+    .scent__naming-label { display: block; font-family: 'Montserrat'; font-size: 0.78rem; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 22px; }
+    .scent__naming-formula { font-family: 'Noto Serif KR'; font-weight: 300; font-size: clamp(2.2rem, 4vw, 3.2rem); letter-spacing: 0.05em; color: #fff; margin-bottom: 14px; }
+    .scent__naming-desc { font-family: 'Noto Serif KR'; font-weight: 200; font-size: 1.05rem; color: rgba(255,255,255,0.6); margin-bottom: 40px; }
+    .scent__naming-divider { width: 60px; height: 1px; background: rgba(255,255,255,0.25); margin: 0 auto 40px; }
+    .scent__naming-rule { font-family: 'Montserrat'; font-weight: 500; font-size: 1.05rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.85); margin-bottom: 26px; }
+    .scent__naming-rule span { padding: 6px 16px; border: 1px solid rgba(255,255,255,0.3); border-radius: 2px; margin: 0 4px; display: inline-block; }
+    .scent__naming-note { font-family: 'Noto Serif KR'; font-weight: 200; font-size: 1.1rem; line-height: 1.9; color: rgba(255,255,255,0.75); }
   </style>
 </head>
 <body class="on-dark">
@@ -424,6 +456,47 @@
         <div class="product-card"><img src="PRODUCT_03.jpg"><h3>Room Spray 50ml</h3><p>언제 어디서든 즉각적으로<br>분위기를 전환하는 프래그런스</p></div>
       </div>
     </div>
+
+    <!-- step 3: 기프트 적합성 -->
+    <div class="product-gift-wrap" id="pv-gift">
+      <div class="gift-header">
+        <h4>Gift Fit</h4>
+        <p>마음을 전하고 싶은 날, 리빈느가 가장 자연스러운 선택이 되도록</p>
+      </div>
+      <div class="gift-grid">
+        <div class="gift-card">
+          <h3>채널</h3>
+          <ul>
+            <li>카카오톡 선물하기 — 모바일에서 선물이 오가는 채널</li>
+            <li>라인프렌즈 스퀘어 매장 — 직접 시향 후 구매로 이어지는 동선</li>
+          </ul>
+        </div>
+        <div class="gift-card">
+          <h3>가격</h3>
+          <ul>
+            <li>디퓨저 200ml — ₩29,900</li>
+            <li>디퓨저 100ml — ₩19,900</li>
+            <li>룸스프레이 50ml — ₩9,900 (오프라인 단독)</li>
+          </ul>
+          <p class="gift-note">카카오톡 선물하기에서 부담 없이 결제되는 구간</p>
+        </div>
+        <div class="gift-card">
+          <h3>시즌</h3>
+          <ul>
+            <li>추석 (10월 초) — 부모님·친지 선물</li>
+            <li>크리스마스·연말 (12월) — 연인·친구 선물</li>
+          </ul>
+        </div>
+        <div class="gift-card">
+          <h3>모먼트</h3>
+          <ul>
+            <li>집들이 · 생일 · 기념일 · 이사 · 감사</li>
+          </ul>
+          <p class="gift-note">마음을 전하고 싶은 날</p>
+        </div>
+      </div>
+      <p class="gift-bonus">선물 구매자 전원, 리빈느 쇼핑백 증정</p>
+    </div>
   </section>
 
   <!-- ──────────────────────────────────────────── -->
@@ -432,6 +505,18 @@
   <!-- ──────────────────────────────────────────── -->
   <section class="section" id="scent">
     <div class="section-headline">06. Scent Experience</div>
+    <div class="scent-step-wrap" id="scent-naming">
+      <div class="scent__content">
+        <div class="scent__naming">
+          <span class="scent__naming-label">Naming Story</span>
+          <h2 class="scent__naming-formula">LIVE + LINE</h2>
+          <p class="scent__naming-desc">살다(Live)와 잇다·선(Line)의 결합</p>
+          <div class="scent__naming-divider"></div>
+          <p class="scent__naming-rule"><span>시간 · 날씨 · 계절</span>+<span>장소</span></p>
+          <p class="scent__naming-note">공간에 대한 기억을 데려오는 향.<br>시간이 흐를수록 삶과 함께 깊어지는 향을 지향합니다.</p>
+        </div>
+      </div>
+    </div>
     <div class="scent-step-wrap" id="scent-intro">
       <div class="scent__content">
         <div class="scent__intro">
@@ -482,11 +567,12 @@
    * [0] hero      : 3
    * [1] story     : 3
    * [2] target    : 5  (페르소나 1~3 + 포지셔닝 4~5)
-   * [3] identity  : 4
-   * [4] product   : 0  (스텝 없이 섹션 진입 즉시 표시)
-   * [5] scent     : 4
+   * [3] identity  : 3
+   * [4] product   : 3  (1: 대표영상 / 2: 카드요약 / 3: 기프트 적합성)
+   * [5] scent     : 5  (1: 네이밍 스토리 / 2: 인트로 / 3~5: 향 3종)
+   * [6] vote      : 0
    */
-  const maxSteps = [3, 3, 5, 3, 2, 4, 0];
+  const maxSteps = [3, 3, 5, 3, 3, 5, 0];
 
   /* ── 휠 이벤트 ── */
   window.addEventListener('wheel', (e) => {
@@ -586,16 +672,19 @@
       }
     }
 
-    /* [05] product — 2 steps
+    /* [05] product — 3 steps
      *  1 : 대표 영상 + logo_05.png
      *  2 : 카드 요약 3종
+     *  3 : 기프트 적합성
      */
     if (sec.id === 'product') {
       const pvWrap   = sec.querySelector('.product-step-wrap');
       const summWrap = sec.querySelector('.product-summary-wrap');
+      const giftWrap = sec.querySelector('.product-gift-wrap');
       const vid      = sec.querySelector('video');
       pvWrap.classList.remove('active');
       summWrap.classList.remove('active');
+      giftWrap.classList.remove('active');
       vid.pause();
 
       if (currentStep === 1) {
@@ -605,9 +694,16 @@
       } else if (currentStep === 2) {
         summWrap.classList.add('active');
         document.body.className = 'on-light';
+      } else if (currentStep === 3) {
+        giftWrap.classList.add('active');
+        document.body.className = 'on-light';
       }
     }
-    /* [06] scent — 4 steps */
+    /* [06] scent — 5 steps
+     *  1 : 향 네이밍 스토리 (LIVE+LINE, Naming Formula)
+     *  2 : 인트로
+     *  3~5 : 향 3종
+     */
     if (sec.id === 'scent') {
       const steps = sec.querySelectorAll('.scent-step-wrap');
       steps.forEach(s => s.classList.remove('active'));
@@ -615,10 +711,12 @@
       vids.forEach(v => v.pause());
 
       if (currentStep === 1) {
-        steps[0].classList.add('active');
-      } else if (currentStep >= 2 && currentStep <= 4) {
+        steps[0].classList.add('active'); // 네이밍 스토리
+      } else if (currentStep === 2) {
+        steps[1].classList.add('active'); // 인트로
+      } else if (currentStep >= 3 && currentStep <= 5) {
         steps[currentStep - 1].classList.add('active');
-        vids[currentStep - 2].play();
+        vids[currentStep - 3].play();
       }
     }
 
