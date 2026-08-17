@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;700&family=Noto+Serif+KR:wght@200;300;500&family=Sorts+Mill+Goudy&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── [SECTION 1-6 원본 스타일 100% 보존] ── */
+    /* ── [SECTION 1-6 원본 스타일 100% 보존 및 수정] ── */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     :root {
       --dark: #0d0d0d;
@@ -59,21 +59,43 @@
     .s1-step2 .hero__slogan { opacity: 1; transform: translateY(0); }
     .s1-step3 .hero__logo, .s1-step3 .hero__brand-kr { opacity: 1; transform: translateY(0); }
 
-    /* SECTION 2 - STORY (이미지 크로스페이드 버전) */
+    /* SECTION 2 - STORY (가로세로 중앙 배치 수정 반영) */
     #story { background-color: var(--cream); }
     .story__bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.55; }
     .story__content { position:relative; z-index: 2; width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 6vw; }
-    .story__img-wrap { position: relative; width: min(60vw, 820px); height: clamp(90px, 12vw, 160px); margin-left: auto; margin-right: auto; margin-bottom: 55px; transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), margin-bottom 1.2s ease; }
-    .story__img { position: absolute; top: 0; left: 50%; width: 100%; height: 100%; object-fit: contain; object-position: center center; transform: translateX(-50%); opacity: 0; transition: opacity 1.3s ease; }
+    
+    /* 가로세로 중앙 배치를 위한 story__img-wrap 스타일 조정 */
+    .story__img-wrap { 
+      position: relative; 
+      width: min(60vw, 820px); 
+      height: clamp(90px, 12vw, 160px); 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 55px; 
+      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), margin-bottom 1.2s ease; 
+    }
+    .story__img { 
+      position: absolute; 
+      top: 50%; 
+      left: 50%; 
+      width: 100%; 
+      height: 100%; 
+      object-fit: contain; 
+      object-position: center center; 
+      transform: translate(-50%, -50%); 
+      opacity: 0; 
+      transition: opacity 1.3s ease; 
+    }
     .s2-step1 .story__img--spread { opacity: 1; }
     .s2-step2 .story__img--spread { opacity: 0; }
     .s2-step2 .story__img--condensed,
     .s2-step3 .story__img--condensed { opacity: 1; }
-    .s2-step3 .story__img-wrap { transform: translateY(-70px); margin-bottom: 15px; }
+    .s2-step3 .story__img-wrap { transform: translateY(-30px); margin-bottom: 15px; }
     .story__body { font-family:'Noto Serif KR',serif; font-weight:350; font-size:1.1rem; line-height:2.2; letter-spacing:0.08em; color: var(--deep-grey); text-align:center; opacity: 0; transform: translateY(20px); transition: all 1s ease 0.2s; }
     .s2-step3 .story__body { opacity: 1; transform: translateY(0); }
 
-    /* SECTION 3 - TARGET & POSITIONING (통합) */
+    /* SECTION 3 - TARGET & POSITIONING */
     #target { background-color: var(--warm-grey); }
     .target__content { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; }
     .tg-step-view { position: absolute; width: 80vw; max-width: 1200px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; opacity: 0; transform: translateY(30px); transition: all 1s ease; pointer-events: none; }
@@ -131,9 +153,6 @@
     .step-pattern-visible .id-pattern-area { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
     .id-pattern-img-box { position: relative; width: 100%; height: 480px; border-radius: 2px; overflow: hidden; box-shadow: 20px 20px 60px rgba(0,0,0,0.05); }
     .id-pattern-img-box img { width: 100%; height: 100%; object-fit: cover; }
-    .id-pattern-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 40px; text-align: center; }
-    .id-overlay-text { color: var(--dark); font-family: 'Noto Serif KR'; font-weight: 500; font-size: 1.3rem; line-height: 2.2; word-break: keep-all; text-shadow: 0 0 20px rgba(255,255,255,0.8); }
-    .id-overlay-text strong { font-weight: 700; color: #000; border-bottom: 1.5px solid var(--dark); padding-bottom: 2px; }
     .id-logo-all-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px; width: 100%; max-width: 700px; padding: 20px 0; }
     .id-logo-row { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; opacity: 0; transform: translateY(20px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
     .id-logo-row:nth-child(1) { transition-delay: 0.1s; }
@@ -145,6 +164,78 @@
     .id-logo-asset { display: block; }
     .id-logo-asset.wide,
     .id-logo-asset.symbol { width: clamp(200px, 28vw, 420px); }
+
+    /* SECTION 5 - COLLECTION */
+    #product { background-color: #000; }
+    .product-step-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; }
+    .product-step-wrap.active { opacity: 1; pointer-events: auto; }
+    .product__bg-wrap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+    .product__video { width: 100%; height: 100%; object-fit: cover; }
+    .product__overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.8)); z-index: 2; }
+    .product__detail-content { position: relative; z-index: 10; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .product__logo-img { width: clamp(200px, 28vw, 440px); opacity: 0; transform: translateY(20px); transition: all 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s; filter: brightness(0) invert(1); }
+    .active .product__logo-img { opacity: 1; transform: translateY(0); }
+    .product-summary-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; background-color: #f4f4f4; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .product-summary-wrap.active { opacity: 1; pointer-events: auto; }
+    .lineup-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; width: 90vw; max-width: 1300px; }
+    .product-card { background: #fff; padding: 40px; text-align: center; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); opacity: 0; transform: translateY(20px); transition: 1s ease; }
+    .product-card img { width: 100%; height: 350px; object-fit: cover; margin-bottom: 30px; background: #eee; }
+    .product-card h3 { font-family: 'Noto Serif KR'; font-size: 1.65rem; color: var(--deep-grey); margin-bottom: 15px; font-weight: 300; }
+    .product-card p { font-family: 'Noto Serif KR'; font-size: 0.98rem; color: #777; line-height: 1.8; }
+    .product-spec { margin-top: 24px; padding-top: 18px; border-top: 1px solid #eee; font-family: 'Noto Sans KR'; font-size: 0.85rem; line-height: 1.8; color: #888; letter-spacing: 0.02em; }
+    .product-spec strong { font-family: 'Montserrat'; font-size: 1rem; font-weight: 500; color: var(--deep-grey); }
+    .product-summary-wrap.active .product-card { opacity: 1; transform: translateY(0); }
+    .product-summary-wrap.active .product-card:nth-child(1) { transition-delay: 0.15s; }
+    .product-summary-wrap.active .product-card:nth-child(2) { transition-delay: 0.3s; }
+    .product-summary-wrap.active .product-card:nth-child(3) { transition-delay: 0.45s; }
+
+    .product-gift-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; background-color: #f4f4f4; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 6vw; }
+    .product-gift-wrap.active { opacity: 1; pointer-events: auto; }
+    .gift-header { text-align: center; margin-bottom: 50px; opacity: 0; transform: translateY(20px); transition: all 1s ease; }
+    .product-gift-wrap.active .gift-header { opacity: 1; transform: translateY(0); }
+    .gift-header h4 { font-family: 'Montserrat'; font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: #999; margin-bottom: 14px; }
+    .gift-header p { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 1.15rem; color: var(--deep-grey); }
+    .gift-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; width: 90vw; max-width: 1300px; margin-bottom: 40px; }
+    .gift-card { background: #fff; padding: 32px 26px; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); opacity: 0; transform: translateY(20px); transition: 1s ease; }
+    .product-gift-wrap.active .gift-card { opacity: 1; transform: translateY(0); }
+    .product-gift-wrap.active .gift-card:nth-child(1) { transition-delay: 0.1s; }
+    .product-gift-wrap.active .gift-card:nth-child(2) { transition-delay: 0.2s; }
+    .product-gift-wrap.active .gift-card:nth-child(3) { transition-delay: 0.3s; }
+    .gift-card h3 { font-family: 'Noto Serif KR'; font-weight: 400; font-size: 1.15rem; color: var(--deep-grey); margin-bottom: 16px; }
+    .gift-card ul { list-style: none; }
+    .gift-card li { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 0.92rem; line-height: 1.8; color: #666; margin-bottom: 6px; }
+    .gift-note { font-family: 'Noto Sans KR'; font-weight: 300; font-size: 0.8rem; color: #999; margin-top: 14px; }
+    .gift-bonus { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 1rem; letter-spacing: 0.05em; color: var(--deep-grey); opacity: 0; transform: translateY(15px); transition: all 1s ease 0.5s; }
+    .product-gift-wrap.active .gift-bonus { opacity: 1; transform: translateY(0); }
+
+    /* SECTION 6 - SCENT (스크롤 분리 반영) */
+    #scent { background-color: #000; color: #fff; }
+    .scent-step-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; }
+    .scent-step-wrap.active { opacity: 1; pointer-events: auto; }
+    .scent__bg-wrap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+    .scent__video { width: 100%; height: 100%; object-fit: cover; }
+    .scent__overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.85)); z-index: 2; }
+    .scent__content { position: relative; z-index: 10; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    
+    /* SCENT Intro Step 1, 2 관련 스타일 수정 */
+    .scent__intro h2 { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 2.6rem; line-height: 1.6; margin-bottom: 25px; color: #fff; opacity: 0; transform: translateY(20px); transition: 1.2s ease; }
+    .scent__intro-sub { opacity: 0; transform: translateY(20px); transition: 1.2s ease 0.2s; }
+    .scent__intro p { font-family: 'Noto Serif KR'; font-weight: 200; font-size: 1.2rem; color: rgba(255,255,255,0.7); }
+    .scent__intro-rule { font-family: 'Montserrat', 'Noto Sans KR', sans-serif; font-size: 1rem; letter-spacing: 0.08em; margin: 28px 0 18px; color: rgba(255,255,255,0.85); }
+    .scent__intro-rule span { padding: 8px 18px; border: 1px solid rgba(255,255,255,0.3); border-radius: 2px; margin: 0 3px; display: inline-block; }
+    .scent__intro-rule b { padding: 0 8px; font-weight: 400; display: inline-block; }
+
+    /* scent-intro active 단계별 표출 제어 */
+    .scent-step-wrap.active .scent__intro h2 { opacity: 1; transform: translateY(0); }
+    .scent-step-wrap.show-sub .scent__intro-sub { opacity: 1; transform: translateY(0); }
+
+    .scent__name { font-family: 'Noto Serif KR'; font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 500; margin-bottom: 20px; opacity: 0; transform: translateY(30px); transition: 1s ease; }
+    .scent__desc { font-family: 'Noto Serif KR'; font-size: 1.3rem; font-weight: 200; color: rgba(255,255,255,0.85); margin-bottom: 60px; opacity: 0; transform: translateY(20px); transition: 1s ease 0.3s; }
+    .note__grid { display: flex; gap: clamp(40px, 8vw, 100px); justify-content: center; margin-top: 40px; opacity: 0; transform: translateY(20px); transition: 1s ease 0.6s; }
+    .note__item { text-align: center; }
+    .note__label { font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 0.4em; color: rgba(255,255,255,0.4); margin-bottom: 25px; text-transform: uppercase; }
+    .note__list { font-family: 'Noto Serif KR'; font-size: 1.1rem; font-weight: 300; line-height: 2; color: rgba(255,255,255,0.9); }
+    .active .scent__name, .active .scent__desc, .active .note__grid { opacity: 1; transform: translateY(0); }
 
     /* SECTION 7 - EPILOGUE */
     #vote { background-color: #000; }
@@ -166,92 +257,11 @@
     }
     #vote.active-sec .vote__sub  { opacity: 1; transform: translateY(0); }
     #vote.active-sec .vote__main { opacity: 1; transform: translateY(0); }
-
-    /* SECTION 5 - COLLECTION */
-    #product { background-color: #000; }
-    .product-step-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; }
-    .product-step-wrap.active { opacity: 1; pointer-events: auto; }
-    .product__bg-wrap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
-    .product__video { width: 100%; height: 100%; object-fit: cover; }
-    .product__overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.8)); z-index: 2; }
-    .product__detail-content { position: relative; z-index: 10; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-    .product__name { font-family: 'Noto Serif KR'; font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 300; color: #fff; margin-bottom: 16px; opacity: 0; transform: translateY(28px); transition: 1s ease; }
-    .product__desc { font-family: 'Noto Serif KR'; font-size: 1.15rem; font-weight: 200; color: rgba(255,255,255,0.75); opacity: 0; transform: translateY(16px); transition: 1s ease 0.3s; }
-    .product__logo-img { width: clamp(200px, 28vw, 440px); opacity: 0; transform: translateY(20px); transition: all 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s; filter: brightness(0) invert(1); }
-    .active .product__logo-img { opacity: 1; transform: translateY(0); }
-    .product-summary-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; background-color: #f4f4f4; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .product-summary-wrap.active { opacity: 1; pointer-events: auto; }
-    .lineup-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; width: 90vw; max-width: 1300px; }
-    .product-card { background: #fff; padding: 40px; text-align: center; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); opacity: 0; transform: translateY(20px); transition: 1s ease; }
-    .product-card img { width: 100%; height: 350px; object-fit: cover; margin-bottom: 30px; background: #eee; }
-    .product-card h3 { font-family: 'Noto Serif KR'; font-size: 1.65rem; color: var(--deep-grey); margin-bottom: 15px; font-weight: 300; }
-    .product-card p { font-family: 'Noto Serif KR'; font-size: 0.98rem; color: #777; line-height: 1.8; }
-    .product-spec { margin-top: 24px; padding-top: 18px; border-top: 1px solid #eee; font-family: 'Noto Sans KR'; font-size: 0.85rem; line-height: 1.8; color: #888; letter-spacing: 0.02em; }
-    .product-spec strong { font-family: 'Montserrat'; font-size: 1rem; font-weight: 500; color: var(--deep-grey); }
-    .product-summary-wrap.active .product-card { opacity: 1; transform: translateY(0); }
-    .product-summary-wrap.active .product-card:nth-child(1) { transition-delay: 0.15s; }
-    .product-summary-wrap.active .product-card:nth-child(2) { transition-delay: 0.3s; }
-    .product-summary-wrap.active .product-card:nth-child(3) { transition-delay: 0.45s; }
-
-    /* SECTION 5 - COLLECTION : 기프트 적합성 (신규) */
-    .product-gift-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; background-color: #f4f4f4; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 6vw; }
-    .product-gift-wrap.active { opacity: 1; pointer-events: auto; }
-    .gift-header { text-align: center; margin-bottom: 50px; opacity: 0; transform: translateY(20px); transition: all 1s ease; }
-    .product-gift-wrap.active .gift-header { opacity: 1; transform: translateY(0); }
-    .gift-header h4 { font-family: 'Montserrat'; font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: #999; margin-bottom: 14px; }
-    .gift-header p { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 1.15rem; color: var(--deep-grey); }
-    .gift-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; width: 90vw; max-width: 1300px; margin-bottom: 40px; }
-    .gift-card { background: #fff; padding: 32px 26px; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); opacity: 0; transform: translateY(20px); transition: 1s ease; }
-    .product-gift-wrap.active .gift-card { opacity: 1; transform: translateY(0); }
-    .product-gift-wrap.active .gift-card:nth-child(1) { transition-delay: 0.1s; }
-    .product-gift-wrap.active .gift-card:nth-child(2) { transition-delay: 0.2s; }
-    .product-gift-wrap.active .gift-card:nth-child(3) { transition-delay: 0.3s; }
-    .product-gift-wrap.active .gift-card:nth-child(4) { transition-delay: 0.4s; }
-    .gift-card h3 { font-family: 'Noto Serif KR'; font-weight: 400; font-size: 1.15rem; color: var(--deep-grey); margin-bottom: 16px; }
-    .gift-card ul { list-style: none; }
-    .gift-card li { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 0.92rem; line-height: 1.8; color: #666; margin-bottom: 6px; }
-    .gift-note { font-family: 'Noto Sans KR'; font-weight: 300; font-size: 0.8rem; color: #999; margin-top: 14px; }
-    .gift-bonus { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 1rem; letter-spacing: 0.05em; color: var(--deep-grey); opacity: 0; transform: translateY(15px); transition: all 1s ease 0.5s; }
-    .product-gift-wrap.active .gift-bonus { opacity: 1; transform: translateY(0); }
-
-    /* SECTION 6 - SCENT */
-    #scent { background-color: #000; color: #fff; }
-    .scent-step-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; }
-    .scent-step-wrap.active { opacity: 1; pointer-events: auto; }
-    .scent__bg-wrap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
-    .scent__video { width: 100%; height: 100%; object-fit: cover; }
-    .scent__overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.85)); z-index: 2; }
-    .scent__content { position: relative; z-index: 10; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-    .scent__intro h2 { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 2.6rem; line-height: 1.6; margin-bottom: 25px; color: #fff; opacity: 0; transform: translateY(20px); transition: 1.2s ease; }
-    .scent__intro p { font-family: 'Noto Serif KR'; font-weight: 200; font-size: 1.2rem; color: rgba(255,255,255,0.7); opacity: 0; transform: translateY(20px); transition: 1.2s ease 0.3s; }
-    .scent__intro-rule { font-family: 'Montserrat', 'Noto Sans KR', sans-serif; font-size: 1rem; letter-spacing: 0.08em; margin: 28px 0 18px; color: rgba(255,255,255,0.85); }
-    .scent__intro-rule span { padding: 8px 18px; border: 1px solid rgba(255,255,255,0.3); border-radius: 2px; margin: 0 3px; display: inline-block; }
-    .scent__intro-rule b { padding: 0 8px; font-weight: 400; display: inline-block; }
-
-    .active .scent__intro h2, .active .scent__intro p { opacity: 1; transform: translateY(0); }
-    .scent__name { font-family: 'Noto Serif KR'; font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 500; margin-bottom: 20px; opacity: 0; transform: translateY(30px); transition: 1s ease; }
-    .scent__desc { font-family: 'Noto Serif KR'; font-size: 1.3rem; font-weight: 200; color: rgba(255,255,255,0.85); margin-bottom: 60px; opacity: 0; transform: translateY(20px); transition: 1s ease 0.3s; }
-    .note__grid { display: flex; gap: clamp(40px, 8vw, 100px); justify-content: center; margin-top: 40px; opacity: 0; transform: translateY(20px); transition: 1s ease 0.6s; }
-    .note__item { text-align: center; }
-    .note__label { font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 0.4em; color: rgba(255,255,255,0.4); margin-bottom: 25px; text-transform: uppercase; }
-    .note__list { font-family: 'Noto Serif KR'; font-size: 1.1rem; font-weight: 300; line-height: 2; color: rgba(255,255,255,0.9); }
-    .active .scent__name, .active .scent__desc, .active .note__grid { opacity: 1; transform: translateY(0); }
-
-    /* SECTION 6 - SCENT : 향 네이밍 (신규, 초반 스텝) */
-    .scent__naming { max-width: 640px; opacity: 0; transform: translateY(20px); transition: 1.2s ease; }
-    .active .scent__naming { opacity: 1; transform: translateY(0); }
-    .scent__naming-label { display: block; font-family: 'Montserrat'; font-size: 0.78rem; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 22px; }
-    .scent__naming-formula { font-family: 'Noto Serif KR'; font-weight: 300; font-size: clamp(2.2rem, 4vw, 3.2rem); letter-spacing: 0.05em; color: #fff; margin-bottom: 14px; }
-    .scent__naming-desc { font-family: 'Noto Serif KR'; font-weight: 200; font-size: 1.05rem; color: rgba(255,255,255,0.6); margin-bottom: 40px; }
-    .scent__naming-divider { width: 60px; height: 1px; background: rgba(255,255,255,0.25); margin: 0 auto 40px; }
-    .scent__naming-rule { font-family: 'Montserrat'; font-weight: 500; font-size: 1.05rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.85); margin-bottom: 26px; }
-    .scent__naming-rule span { padding: 6px 16px; border: 1px solid rgba(255,255,255,0.3); border-radius: 2px; margin: 0 4px; display: inline-block; }
-    .scent__naming-note { font-family: 'Noto Serif KR'; font-weight: 200; font-size: 1.1rem; line-height: 1.9; color: rgba(255,255,255,0.75); }
   </style>
 </head>
 <body class="on-dark">
 
-<!-- ── 내비게이션 도트 (6개 섹션) ── -->
+<!-- 내비게이션 도트 -->
 <div class="nav-dots">
   <div class="dot-item active" onclick="goToSection(0)"><span class="dot-label">Intro</span><div class="dot"></div></div>
   <div class="dot-item" onclick="goToSection(1)"><span class="dot-label">Story</span><div class="dot"></div></div>
@@ -264,10 +274,7 @@
 
 <div class="container" id="main-container">
 
-  <!-- ──────────────────────────────────────────── -->
-  <!-- 01. INTRO (기존 S1 / hero)                  -->
-  <!-- maxSteps: 3                                  -->
-  <!-- ──────────────────────────────────────────── -->
+  <!-- 01. INTRO -->
   <section class="section active-sec" id="hero">
     <video class="hero__video" src="livinne_hero.mp4" autoplay loop muted playsinline></video>
     <div class="hero__overlay"></div>
@@ -281,13 +288,7 @@
     </div>
   </section>
 
-  <!-- ──────────────────────────────────────────── -->
-  <!-- 02. STORY (이미지 크로스페이드 버전)         -->
-  <!-- maxSteps: 3                                  -->
-  <!-- step1: LIVEINLINE.jpg 등장                   -->
-  <!-- step2: LIVEINLINE.jpg → LIVINNE.jpg 크로스페이드 -->
-  <!-- step3: LIVINNE.jpg 위로 이동 + 브랜드스토리 등장 -->
-  <!-- ──────────────────────────────────────────── -->
+  <!-- 02. STORY -->
   <section class="section" id="story">
     <div class="section-headline">02. Brand Story</div>
     <img class="story__bg" src="livinne_story_bg.png" alt="">
@@ -300,47 +301,40 @@
     </div>
   </section>
 
-  <!-- ──────────────────────────────────────────── -->
-  <!-- 03. TARGET & POSITIONING (통합 섹션)        -->
-  <!-- maxSteps: 5                                  -->
-  <!-- 1~3: 페르소나 / 4: 타 브랜드 맵 / 5: 리빈느 칩 -->
-  <!-- ──────────────────────────────────────────── -->
+  <!-- 03. TARGET & POSITIONING -->
   <section class="section" id="target">
     <div class="section-headline">03. Target &amp; Positioning</div>
     <div class="target__content">
+      <div class="tg-step-view" id="tg-v1">
+        <img src="TARGET_01.jpg">
+        <div class="tg-text-box">
+          <h3>Persona 01. The Curator</h3>
+          <h2>공간의 큐레이터:<br/>독립된 삶을 완성하는 안목</h2>
+          <p>단순히 방을 꾸미는 것을 넘어, 자신의 취향을 공간에 투영합니다.<br>
+             가장 개인적인 장소인 '집'을 향기로 완성하는 25~34 홈 스타일러입니다.</p>
+        </div>
+      </div>
 
-      <!-- 페르소나 1~3단계 -->
-<div class="tg-step-view" id="tg-v1">
-  <img src="TARGET_01.jpg">
-  <div class="tg-text-box">
-    <h3>Persona 01. The Curator</h3>
-    <h2>공간의 큐레이터:<br/>독립된 삶을 완성하는 안목</h2>
-    <p>단순히 방을 꾸미는 것을 넘어, 자신의 취향을 공간에 투영합니다.<br>
-       가장 개인적인 장소인 '집'을 향기로 완성하는 25~34 홈 스타일러입니다.</p>
-  </div>
-</div>
+      <div class="tg-step-view" id="tg-v2">
+        <img src="TARGET_02.jpg">
+        <div class="tg-text-box">
+          <h3>Persona 02. Memory Collector</h3>
+          <h2>기억의 수집가:<br/>추억을 소장하는 가장 감각적인 방법</h2>
+          <p>여행지의 공기, 소중한 찰나의 순간을 향기로 기록하고 싶어 합니다.<br>
+             '추억'과 '경험'이 주는 가치를 위해 기꺼이 지갑을 여는 소비층입니다.</p>
+        </div>
+      </div>
 
-<div class="tg-step-view" id="tg-v2">
-  <img src="TARGET_02.jpg">
-  <div class="tg-text-box">
-    <h3>Persona 02. Memory Collector</h3>
-    <h2>기억의 수집가:<br/>추억을 소장하는 가장 감각적인 방법</h2>
-    <p>여행지의 공기, 소중한 찰나의 순간을 향기로 기록하고 싶어 합니다.<br>
-       '추억'과 '경험'이 주는 가치를 위해 기꺼이 지갑을 여는 소비층입니다.</p>
-  </div>
-</div>
+      <div class="tg-step-view" id="tg-v3">
+        <img src="TARGET_03.jpg">
+        <div class="tg-text-box">
+          <h3>Persona 03. Sincere Gift</h3>
+          <h2>다정한 전달자:<br/>마음을 잇는 가장 특별한 축사</h2>
+          <p>지인의 독립, 친구의 결혼 등 새로운 시작을 진심으로 축하합니다.<br>
+             뻔한 선물 대신 '독보적인 감각'으로 기억되고 싶은 선물 수요층입니다.</p>
+        </div>
+      </div>
 
-<div class="tg-step-view" id="tg-v3">
-  <img src="TARGET_03.jpg">
-  <div class="tg-text-box">
-    <h3>Persona 03. Sincere Gift</h3>
-    <h2>다정한 전달자:<br/>마음을 잇는 가장 특별한 축사</h2>
-    <p>지인의 독립, 친구의 결혼 등 새로운 시작을 진심으로 축하합니다.<br>
-       뻔한 선물 대신 '독보적인 감각'으로 기억되고 싶은 선물 수요층입니다.</p>
-  </div>
-</div>
-
-      <!-- 포지셔닝 맵 (4~5단계) -->
       <div class="map-container">
         <div class="map-axis-x">
           <span class="axis-label label-trendy">Trendy</span>
@@ -363,19 +357,13 @@
         <div class="brand-chip chip-round" style="background-image: url('round.jpg')"><div class="info"><b>라운드어라운드</b>1.1</div></div>
         <div class="brand-chip chip-livinne"><span>LIVINNE</span><div class="price-tag">19,000 — 29,000</div></div>
       </div>
-
     </div>
   </section>
 
-  <!-- ──────────────────────────────────────────── -->
-  <!-- 04. IDENTITY (기존 S7 / 무드보드~로고)       -->
-  <!-- maxSteps: 6                                  -->
-  <!-- step0:무드보드 / 1~2:컬러+패턴 / 3~6:로고4종 -->
-  <!-- ──────────────────────────────────────────── -->
+  <!-- 04. IDENTITY -->
   <section class="section" id="identity">
     <div class="section-headline">04. Brand Identity</div>
 
-    <!-- step 0: 무드보드 -->
     <div class="id-step active">
       <div class="id-header">
         <h4>Visual Mood</h4>
@@ -390,7 +378,6 @@
       </div>
     </div>
 
-    <!-- step 1~2: 컬러 & 패턴 -->
     <div class="id-step">
       <div class="id-elements-grid">
         <div class="id-color-area">
@@ -406,13 +393,11 @@
           <div class="id-header"><h4>Key Pattern</h4><p>공간 위 기억의 흔적, 찰나의 그림자가 남긴 기록</p></div>
           <div class="id-pattern-img-box">
             <img src="shadow_leaf.jpg" alt="">
-
           </div>
         </div>
       </div>
     </div>
 
-    <!-- step 3: 로고 4종 한 페이지 세로 나열 -->
     <div class="id-step" id="id-logo-all">
       <div class="id-logo-all-wrap">
         <div class="id-logo-row">
@@ -435,15 +420,10 @@
     </div>
   </section>
 
-  <!-- ──────────────────────────────────────────── -->
-  <!-- 05. COLLECTION                              -->
-  <!-- maxSteps: 2                                  -->
-  <!-- step 1: 대표 영상 + logo_05.png / step 2: 카드 요약 -->
-  <!-- ──────────────────────────────────────────── -->
+  <!-- 05. COLLECTION -->
   <section class="section" id="product">
     <div class="section-headline">05. Collection</div>
 
-    <!-- step 1: 대표 영상 + 로고 이미지 -->
     <div class="product-step-wrap" id="pv-1">
       <div class="product__bg-wrap">
         <video class="product__video" src="product_01.mp4" loop muted playsinline></video>
@@ -454,7 +434,6 @@
       </div>
     </div>
 
-    <!-- step 2: 카드 요약 3종 -->
     <div class="product-summary-wrap" id="pv-4">
       <div class="lineup-container">
         <div class="product-card"><img src="PRODUCT_01.jpg"><h3>Diffuser 100ml</h3><p>나만의 밀도 있는 공간을 위한<br>가장 합리적인 럭셔리의 시작</p><div class="product-spec">디퓨저 100ml (3향)<br><strong>19,000원</strong></div></div>
@@ -463,7 +442,6 @@
       </div>
     </div>
 
-    <!-- step 3: 기프트 적합성 -->
     <div class="product-gift-wrap" id="pv-gift">
       <div class="gift-header">
         <h4>Gift Fit</h4>
@@ -496,25 +474,28 @@
     </div>
   </section>
 
-  <!-- ──────────────────────────────────────────── -->
-  <!-- 06. SCENT (기존 S6)                         -->
-  <!-- maxSteps: 4                                  -->
-  <!-- ──────────────────────────────────────────── -->
+  <!-- 06. SCENT (스크롤 순서 및 표출 방식 수정 완료) -->
   <section class="section" id="scent">
     <div class="section-headline">06. Scent Experience</div>
+    
+    <!-- 인트로 섹션 (1, 2 스크롤로 분리) -->
     <div class="scent-step-wrap" id="scent-intro">
       <div class="scent__content">
         <div class="scent__intro">
           <h2>공간의 경계를 허무는 기억의 향기</h2>
-          <div class="scent__intro-rule">
-  <span>시간 · 날씨 · 계절</span>
-  <b>+</b>
-  <span>장소</span>
-</div>
-          <p>공간에 대한 기억을 데려오는 향.<br>당신이 사랑하는 기억 속 장소로 안내합니다</p>
+          <div class="scent__intro-sub">
+            <div class="scent__intro-rule">
+              <span>시간 · 날씨 · 계절</span>
+              <b>+</b>
+              <span>장소</span>
+            </div>
+            <p>공간에 대한 기억을 데려오는 향.<br>당신이 사랑하는 기억 속 장소로 안내합니다</p>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- 개별 향 상세 (3, 4, 5 스크롤) -->
     <div class="scent-step-wrap" id="scent-1">
       <div class="scent__bg-wrap"><video class="scent__video" src="scent_귤밭_bg.mp4" loop muted playsinline></video><div class="scent__overlay"></div></div>
       <div class="scent__content"><div class="scent__detail"><div class="scent__name">오후 두 시의 귤밭</div><p class="scent__desc">제주의 귤밭, 오후 두 시.<br>찬란한 햇살이 푸른 잎사귀에 내려앉고 달콤한 향이 바람에 실려 번집니다.</p><div class="note__grid"><div class="note__item"><div class="note__label">Top</div><div class="note__list">Lemon, Orange<br>Mandarin</div></div><div class="note__item"><div class="note__label">Mid</div><div class="note__list">Mint, Rose<br>Jasmin, Peach</div></div><div class="note__item"><div class="note__label">Base</div><div class="note__list">Musk, Ambergris<br>Guaiac Wood</div></div></div></div></div>
@@ -529,10 +510,7 @@
     </div>
   </section>
 
-  <!-- ──────────────────────────────────────────── -->
-  <!-- 07. EPILOGUE (클로징 질문)                       -->
-  <!-- maxSteps: 0 (진입 시 즉시 텍스트 페이드인)   -->
-  <!-- ──────────────────────────────────────────── -->
+  <!-- 07. EPILOGUE -->
   <section class="section" id="vote">
     <img class="vote__bg" src="livinne_closing_bg.jpg" alt="">
     <div class="vote__overlay"></div>
@@ -542,7 +520,7 @@
     </div>
   </section>
 
-</div><!-- /.container -->
+</div>
 
 <script>
   let currentSection = 0;
@@ -553,24 +531,22 @@
   const sections  = document.querySelectorAll('.section');
 
   /*
-   * 섹션별 maxSteps 배열 (요구사항 기준)
+   * 섹션별 maxSteps 배열
    * [0] hero      : 3
    * [1] story     : 3
-   * [2] target    : 5  (페르소나 1~3 + 포지셔닝 4~5)
+   * [2] target    : 5
    * [3] identity  : 3
-   * [4] product   : 3  (1: 대표영상 / 2: 카드요약 / 3: 기프트 적합성)
-   * [5] scent     : 4  (1: 인트로 + 네이밍 핵심 / 2~4: 향 3종)
+   * [4] product   : 3
+   * [5] scent     : 5 (Step 1: 타이틀 -> Step 2: 서브내용 -> Step 3~5: 향 3종)
    * [6] vote      : 0
    */
-  const maxSteps = [3, 3, 5, 3, 3, 4, 0];
+  const maxSteps = [3, 3, 5, 3, 3, 5, 0];
 
-  /* ── 휠 이벤트 ── */
   window.addEventListener('wheel', (e) => {
     if (isAnimating) return;
     e.deltaY > 0 ? handleNext() : handlePrev();
   }, { passive: false });
 
-  /* ── 터치 지원 ── */
   let touchStartY = 0;
   window.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
   window.addEventListener('touchend', (e) => {
@@ -601,37 +577,22 @@
     }
   }
 
-  /* ────────────────────────────────────────────────
-   * updateAnimation : 섹션 내부 스텝 전환
-   * 섹션 ID와 스텝 조건을 수동으로 정확히 매칭
-   * ──────────────────────────────────────────────── */
   function updateAnimation() {
     isAnimating = true;
     const sec = sections[currentSection];
 
-    /* [01] hero — 3 steps */
     if (sec.id === 'hero') {
       sec.classList.toggle('s1-step1', currentStep >= 1);
       sec.classList.toggle('s1-step2', currentStep >= 2);
       sec.classList.toggle('s1-step3', currentStep >= 3);
     }
 
-    /* [02] story — 3 steps
-     *  1: LIVEINLINE.jpg 등장
-     *  2: LIVEINLINE.jpg → LIVINNE.jpg 크로스페이드
-     *  3: LIVINNE.jpg 위로 이동 + 브랜드스토리 등장
-     */
     if (sec.id === 'story') {
       sec.classList.toggle('s2-step1', currentStep >= 1);
       sec.classList.toggle('s2-step2', currentStep >= 2);
       sec.classList.toggle('s2-step3', currentStep >= 3);
     }
 
-    /* [03] target — 5 steps
-     *   1~3 : 페르소나 tg-active-N 클래스로 제어
-     *   4   : 포지셔닝 맵 등장 (tg-active-4)
-     *   5   : 리빈느 칩 등장  (tg-active-5)
-     */
     if (sec.id === 'target') {
       sec.className = 'section active-sec';
       if (currentStep > 0) {
@@ -639,12 +600,6 @@
       }
     }
 
-    /* [04] identity — 3 steps
-     *  0  : 무드보드
-     *  1  : Brand Color
-     *  2  : Key Pattern
-     *  3  : 로고 4종 세로 나열 (Logotype / Typography / Lettermark / Symbol)
-     */
     if (sec.id === 'identity') {
       const idSteps = sec.querySelectorAll('.id-step');
       idSteps.forEach(s => s.classList.remove('active'));
@@ -662,11 +617,6 @@
       }
     }
 
-    /* [05] product — 3 steps
-     *  1 : 대표 영상 + logo_05.png
-     *  2 : 카드 요약 3종
-     *  3 : 기프트 적합성
-     */
     if (sec.id === 'product') {
       const pvWrap   = sec.querySelector('.product-step-wrap');
       const summWrap = sec.querySelector('.product-summary-wrap');
@@ -689,31 +639,35 @@
         document.body.className = 'on-light';
       }
     }
-    /* [06] scent — 4 steps
-     *  1 : 인트로 + Naming Story 핵심 메시지
-     *  2~4 : 향 3종
+
+    /* [06] scent - 스크롤 스텝 제어
+     *  Step 1 : 타이틀만 등장
+     *  Step 2 : 하단 내용 추가 등장
+     *  Step 3~5 : 각 향 비디오 및 정보 등장
      */
     if (sec.id === 'scent') {
       const steps = sec.querySelectorAll('.scent-step-wrap');
-      steps.forEach(s => s.classList.remove('active'));
+      steps.forEach(s => {
+        s.classList.remove('active');
+        s.classList.remove('show-sub');
+      });
       const vids = sec.querySelectorAll('video');
       vids.forEach(v => v.pause());
 
-      if (currentStep >= 1 && currentStep <= 4) {
-        steps[currentStep - 1].classList.add('active');
-        if (currentStep >= 2) {
-          vids[currentStep - 2].play();
-        }
+      if (currentStep === 1) {
+        steps[0].classList.add('active');
+      } else if (currentStep === 2) {
+        steps[0].classList.add('active');
+        steps[0].classList.add('show-sub');
+      } else if (currentStep >= 3 && currentStep <= 5) {
+        steps[currentStep - 2].classList.add('active');
+        vids[currentStep - 3].play();
       }
     }
 
     setTimeout(() => { isAnimating = false; }, 800);
   }
 
-  /* ────────────────────────────────────────────────
-   * updatePage : 섹션 간 이동
-   * themes 배열 = [on-dark, on-warm, on-warm, on-light, on-light, on-dark]
-   * ──────────────────────────────────────────────── */
   function updatePage() {
     isAnimating = true;
     container.style.transform = `translateY(-${currentSection * 100}vh)`;
@@ -726,7 +680,6 @@
       s.classList.toggle('active-sec', i === currentSection);
     });
 
-    // 테마 배열: [on-dark, on-warm, on-warm, on-light, on-dark, on-dark, on-dark]
     const themes = ['on-dark', 'on-warm', 'on-warm', 'on-light', 'on-dark', 'on-dark', 'on-dark'];
     document.body.className = themes[currentSection] || 'on-dark';
 
@@ -740,7 +693,6 @@
     updatePage();
   }
 
-  /* 초기 로드 시 hero 섹션 설정 */
   updatePage();
 </script>
 </body>
