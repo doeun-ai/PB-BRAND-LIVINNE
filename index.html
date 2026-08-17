@@ -59,25 +59,19 @@
     .s1-step2 .hero__slogan { opacity: 1; transform: translateY(0); }
     .s1-step3 .hero__logo, .s1-step3 .hero__brand-kr { opacity: 1; transform: translateY(0); }
 
-    /* SECTION 2 - STORY */
+    /* SECTION 2 - STORY (이미지 크로스페이드 버전) */
     #story { background-color: var(--cream); }
     .story__bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.55; }
-    .story__content { position:relative; z-index: 2; width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .story__title-wrap { position:relative; height:120px; width:100%; display:flex; align-items:center; justify-content:center; margin-bottom:50px; }
-    .title-spread span, .title-condensed span { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(2.8rem, 7vw, 7rem); color: var(--deep-grey); }
-    .title-spread { display:flex; align-items:center; justify-content:center; transition: all 1s ease; }
-    .title-spread span { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
-    .title-spread .sp { width: 0.7em; }
-    .title-condensed { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity: 0; pointer-events: none; transition: all 1.2s ease; }
-    .title-condensed span { letter-spacing:0.5em; transition: letter-spacing 1.5s ease; }
-    .story__divider { width:0; height:1px; background: var(--deep-grey); opacity: 0.2; margin-bottom: 40px; transition: all 1s ease; }
-    .story__body { font-family:'Noto Serif KR',serif; font-weight:350; font-size:1.1rem; line-height:2.2; letter-spacing:0.08em; color: var(--deep-grey); text-align:center; opacity: 0; transform: translateY(20px); transition: all 1s ease; }
-    .s2-step1 .title-spread span { opacity:1; transform: translateY(0); }
-    .s2-step2 .story__divider { opacity: 1; width: 220px; }
-    .s2-step2 .story__body { opacity: 1; transform: translateY(0); }
-    .s2-step3 .title-spread { opacity: 0; transform: scale(0.95); filter: blur(8px); }
-    .s2-step3 .title-condensed { opacity: 1; }
-    .s2-step3 .title-condensed span { letter-spacing: 0.15em; }
+    .story__content { position:relative; z-index: 2; width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 6vw; }
+    .story__img-wrap { position: relative; width: min(60vw, 820px); height: clamp(90px, 12vw, 160px); margin-bottom: 55px; transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), margin-bottom 1.2s ease; }
+    .story__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity 1.3s ease; }
+    .s2-step1 .story__img--spread { opacity: 1; }
+    .s2-step2 .story__img--spread { opacity: 0; }
+    .s2-step2 .story__img--condensed,
+    .s2-step3 .story__img--condensed { opacity: 1; }
+    .s2-step3 .story__img-wrap { transform: translateY(-70px); margin-bottom: 15px; }
+    .story__body { font-family:'Noto Serif KR',serif; font-weight:350; font-size:1.1rem; line-height:2.2; letter-spacing:0.08em; color: var(--deep-grey); text-align:center; opacity: 0; transform: translateY(20px); transition: all 1s ease 0.2s; }
+    .s2-step3 .story__body { opacity: 1; transform: translateY(0); }
 
     /* SECTION 3 - TARGET & POSITIONING (통합) */
     #target { background-color: var(--warm-grey); }
@@ -87,11 +81,9 @@
     .tg-text-box h3 { font-family: 'Montserrat'; font-size: 1.2rem; color: #999; margin-bottom: 15px; }
     .tg-text-box h2 { font-family: 'Noto Serif KR'; font-size: 2.2rem; margin-bottom: 30px; line-height: 1.4; color: var(--deep-grey); font-weight: 300; }
     .tg-text-box p { font-family: 'Noto Serif KR'; font-size: 1.1rem; line-height: 2; color: #666; font-weight: 300; }
-    /* 타겟 스텝 1~3: 페르소나 */
     .tg-active-1 #tg-v1 { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .tg-active-2 #tg-v2 { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .tg-active-3 #tg-v3 { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    /* 타겟 스텝 4~5: 포지셔닝 맵 (기존 product 섹션에서 이식) */
     .map-container { position: absolute; width: 900px; height: 600px; opacity: 0; transform: translateY(30px); transition: all 1.2s ease; }
     .map-axis-x { position: absolute; top: 50%; width: 100%; height: 1px; background: #bbb; }
     .map-axis-y { position: absolute; left: 50%; height: 100%; width: 1px; background: #bbb; }
@@ -107,10 +99,8 @@
     .chip-jomalone { top: 5%; left: 5%; } .chip-cocodor { bottom: 10%; left: 10%; } .chip-hetras { bottom: 18%; left: 20%; } .chip-round { bottom: 12%; left: 52%; } .chip-pcoll { top: 28%; left: 27%; } .chip-paradise { top: 35%; left: 33%; } .chip-doson { top: 25%; left: 45%; } .chip-page { top: 30%; left: 60%; } .chip-kinfolk { top: 8%; left: 72%; } .chip-kundal { top: 48%; left: 68%; } .chip-bibiang { top: 40%; left: 90%; }
     .chip-livinne { width: 150px; height: 150px; background: var(--dark); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Montserrat'; font-weight: 700; top: 72%; left: 88%; z-index: 10; opacity: 0; box-shadow: 0 20px 50px rgba(0,0,0,0.3); transform: translate(-50%, -50%) scale(0); }
     .chip-livinne:hover { transform: translate(-50%, -50%) scale(1.1) !important; }
-    /* 타겟 step4: 타 브랜드 맵 등장 */
     .tg-active-4 .map-container { opacity: 1; transform: translateY(0); }
     .tg-active-4 .brand-chip:not(.chip-livinne) { opacity: 1; transform: scale(1); }
-    /* 타겟 step5: 리빈느 칩 등장 */
     .tg-active-5 .map-container { opacity: 1; transform: translateY(0); }
     .tg-active-5 .brand-chip:not(.chip-livinne) { opacity: 0.35; transform: scale(0.9); filter: grayscale(0.5) blur(1px); }
     .tg-active-5 .chip-livinne { opacity: 1; transform: translate(-50%, -50%) scale(1); }
@@ -144,7 +134,6 @@
     .id-pattern-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 40px; text-align: center; }
     .id-overlay-text { color: var(--dark); font-family: 'Noto Serif KR'; font-weight: 500; font-size: 1.3rem; line-height: 2.2; word-break: keep-all; text-shadow: 0 0 20px rgba(255,255,255,0.8); }
     .id-overlay-text strong { font-weight: 700; color: #000; border-bottom: 1.5px solid var(--dark); padding-bottom: 2px; }
-    /* Logo 4종 세로 나열 레이아웃 */
     .id-logo-all-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px; width: 100%; max-width: 700px; padding: 20px 0; }
     .id-logo-row { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; opacity: 0; transform: translateY(20px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
     .id-logo-row:nth-child(1) { transition-delay: 0.1s; }
@@ -175,13 +164,11 @@
       opacity: 0; transform: translateY(24px);
       transition: opacity 1.6s ease 1s, transform 1.6s cubic-bezier(0.22, 1, 0.36, 1) 1s;
     }
-    /* 섹션 진입 시 애니메이션 트리거 */
     #vote.active-sec .vote__sub  { opacity: 1; transform: translateY(0); }
     #vote.active-sec .vote__main { opacity: 1; transform: translateY(0); }
 
     /* SECTION 5 - COLLECTION */
     #product { background-color: #000; }
-    /* 영상 스텝 (1~3): scent 방식 동일 구조 */
     .product-step-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; }
     .product-step-wrap.active { opacity: 1; pointer-events: auto; }
     .product__bg-wrap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
@@ -192,7 +179,6 @@
     .product__desc { font-family: 'Noto Serif KR'; font-size: 1.15rem; font-weight: 200; color: rgba(255,255,255,0.75); opacity: 0; transform: translateY(16px); transition: 1s ease 0.3s; }
     .product__logo-img { width: clamp(200px, 28vw, 440px); opacity: 0; transform: translateY(20px); transition: all 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s; filter: brightness(0) invert(1); }
     .active .product__logo-img { opacity: 1; transform: translateY(0); }
-    /* 요약 카드 스텝 (4): 기존 스타일 유지, on-light 배경 */
     .product-summary-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; background-color: #f4f4f4; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .product-summary-wrap.active { opacity: 1; pointer-events: auto; }
     .lineup-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; width: 90vw; max-width: 1300px; }
@@ -258,18 +244,20 @@
   </section>
 
   <!-- ──────────────────────────────────────────── -->
-  <!-- 02. STORY (기존 S2)                         -->
+  <!-- 02. STORY (이미지 크로스페이드 버전)         -->
   <!-- maxSteps: 3                                  -->
+  <!-- step1: LIVEINLINE.jpg 등장                   -->
+  <!-- step2: LIVEINLINE.jpg → LIVINNE.jpg 크로스페이드 -->
+  <!-- step3: LIVINNE.jpg 위로 이동 + 브랜드스토리 등장 -->
   <!-- ──────────────────────────────────────────── -->
   <section class="section" id="story">
     <div class="section-headline">02. Brand Story</div>
     <img class="story__bg" src="livinne_story_bg.png" alt="">
     <div class="story__content">
-      <div class="story__title-wrap">
-        <div class="title-spread"><span>L</span><span>I</span><span>V</span><span>E</span><span class="sp"></span><span>I</span><span>N</span><span class="sp"></span><span>L</span><span>I</span><span>N</span><span>E</span></div>
-        <div class="title-condensed"><span>LIVINNE</span></div>
+      <div class="story__img-wrap">
+        <img class="story__img story__img--spread" src="LIVEINLINE.jpg" alt="LIVE IN LINE">
+        <img class="story__img story__img--condensed" src="LIVINNE.jpg" alt="LIVINNE">
       </div>
-      <div class="story__divider"></div>
       <p class="story__body">우리가 사랑하는 공간에는 저마다의 향기가 있습니다. <br /><br />향기는 기억과 가장 가까운 감각이기에,<br />그 향기가 다시 코끝에 닿는 순간 우리는 어느새 그 공간 속에 서있습니다.<br /><br />리빈느(LIVINNE)는 우리가 숨 쉬고, 사랑하고, 머물렀던 공간의 향기를 당신의 공간으로 데려옵니다. <br />흩어진 순간들을 하나의 선(Line)으로 이어 — 오늘을 살아가도록(Live).<br /><br />당신의 가장 소중한 공간이 늘 아름다운 기억으로 채워지기를 바랍니다. <br />리빈느가 머무는 그곳에서, 당신의 삶은 더 깊고 온전해집니다.</p>
     </div>
   </section>
@@ -552,7 +540,11 @@
       sec.classList.toggle('s1-step3', currentStep >= 3);
     }
 
-    /* [02] story — 3 steps */
+    /* [02] story — 3 steps
+     *  1: LIVEINLINE.jpg 등장
+     *  2: LIVEINLINE.jpg → LIVINNE.jpg 크로스페이드
+     *  3: LIVINNE.jpg 위로 이동 + 브랜드스토리 등장
+     */
     if (sec.id === 'story') {
       sec.classList.toggle('s2-step1', currentStep >= 1);
       sec.classList.toggle('s2-step2', currentStep >= 2);
@@ -565,7 +557,6 @@
      *   5   : 리빈느 칩 등장  (tg-active-5)
      */
     if (sec.id === 'target') {
-      // 기존 클래스를 초기화하고 현재 스텝에 맞는 클래스만 추가
       sec.className = 'section active-sec';
       if (currentStep > 0) {
         sec.classList.add('tg-active-' + currentStep);
@@ -580,7 +571,6 @@
      */
     if (sec.id === 'identity') {
       const idSteps = sec.querySelectorAll('.id-step');
-      // idSteps[0]=무드보드, [1]=컬러+패턴, [2]=로고4종
       idSteps.forEach(s => s.classList.remove('active'));
       sec.classList.remove('step-pattern-visible');
 
