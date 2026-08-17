@@ -59,12 +59,10 @@
     .s1-step2 .hero__slogan { opacity: 1; transform: translateY(0); }
     .s1-step3 .hero__logo, .s1-step3 .hero__brand-kr { opacity: 1; transform: translateY(0); }
 
-    /* SECTION 2 - STORY (가로세로 중앙 배치 수정 반영) */
+    /* SECTION 2 - STORY */
     #story { background-color: var(--cream); }
     .story__bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.55; }
     .story__content { position:relative; z-index: 2; width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 6vw; }
-    
-    /* 가로세로 중앙 배치를 위한 story__img-wrap 스타일 조정 */
     .story__img-wrap { 
       position: relative; 
       width: min(60vw, 820px); 
@@ -129,41 +127,36 @@
 
     /* SECTION 4 - IDENTITY */
     #identity { background-color: #ffffff; }
-    .id-step { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; visibility: hidden; transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 8vw 60px; }
+    .id-step { 
+      position: absolute; inset: 0; width: 100%; height: 100%; 
+      opacity: 0; visibility: hidden; 
+      transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); 
+      display: flex; flex-direction: column; align-items: center; justify-content: center; 
+      padding: 90px 8vw 40px; 
+      z-index: 2;
+    }
     .id-step.active { opacity: 1; visibility: visible; }
-    .id-header { width: 100%; max-width: 1400px; height: 90px; margin-bottom: 40px; text-align: left; }
-    .id-header h4 { font-family: 'Montserrat'; font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: #bbb; margin-bottom: 12px; }
-    .id-header p { font-family: 'Noto Sans KR'; font-size: 0.85rem; font-weight: 300; color: #999; line-height: 1.6; }
-    .id-mood-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); gap: 30px; width: 100%; height: 65vh; max-width: 1400px; }
-    .id-mood-item { position: relative; overflow: hidden; border-radius: 4px; opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
-    .id-mood-item img { width: 100%; height: 100%; object-fit: cover; }
-    .md1 { grid-column: 1 / 2; grid-row: 1 / 3; transition-delay: 0.1s; } 
-    .md2 { grid-column: 2 / 3; grid-row: 1 / 2; transition-delay: 0.2s; }
-    .md3 { grid-column: 3 / 5; grid-row: 1 / 2; transition-delay: 0.3s; } 
-    .md4 { grid-column: 2 / 4; grid-row: 2 / 3; transition-delay: 0.4s; } 
-    .md5 { grid-column: 4 / 5; grid-row: 2 / 3; transition-delay: 0.5s; }
-    .active .id-mood-item { opacity: 1; transform: translateY(0); }
-    .id-elements-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; width: 100%; max-width: 1400px; align-items: start; }
-    .id-color-area { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
-    .active .id-color-area { opacity: 1; transform: translateY(0); }
-    .id-color-list { display: flex; flex-direction: column; gap: 12px; height: 480px; }
-    .id-color-bar { flex: 1; display: flex; align-items: center; padding: 0 30px; border-radius: 2px; font-family: 'Montserrat'; font-size: 11px; letter-spacing: 0.1em; color: #fff; }
-    .cb-id1 { background: #dcdee0; color: #424142; } .cb-id2 { background: #969696; color: #fff; } .cb-id3 { background: #f7f7f7; color: #424142; } .cb-id4 { background: #424142; color: #fff; }
-    .id-pattern-area { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
-    .step-pattern-visible .id-pattern-area { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
-    .id-pattern-img-box { position: relative; width: 100%; height: 480px; border-radius: 2px; overflow: hidden; box-shadow: 20px 20px 60px rgba(0,0,0,0.05); }
-    .id-pattern-img-box img { width: 100%; height: 100%; object-fit: cover; }
-    .id-logo-all-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px; width: 100%; max-width: 700px; padding: 20px 0; }
-    .id-logo-row { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; opacity: 0; transform: translateY(20px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
-    .id-logo-row:nth-child(1) { transition-delay: 0.1s; }
-    .id-logo-row:nth-child(2) { transition-delay: 0.25s; }
-    .id-logo-row:nth-child(3) { transition-delay: 0.4s; }
-    .id-logo-row:nth-child(4) { transition-delay: 0.55s; }
-    .active .id-logo-row { opacity: 1; transform: translateY(0); }
-    .id-logo-label { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: #bbb; }
-    .id-logo-asset { display: block; }
-    .id-logo-asset.wide,
-    .id-logo-asset.symbol { width: clamp(200px, 28vw, 420px); }
+    .id-header { width: 100%; max-width: 1200px; margin-bottom: 25px; text-align: center; }
+    .id-header h4 { font-family: 'Montserrat'; font-size: 0.9rem; letter-spacing: 0.3em; text-transform: uppercase; color: #bbb; margin-bottom: 10px; }
+    .id-header p { font-family: 'Noto Sans KR'; font-size: 0.95rem; font-weight: 300; color: #777; line-height: 1.6; }
+
+    /* 통 이미지 컨테이너 */
+    .id-full-asset-wrap { 
+      width: 100%; max-width: 1200px; 
+      display: flex; flex-direction: column; align-items: center; justify-content: center; 
+    }
+    .id-full-img { 
+      width: 100%; max-height: 60vh; 
+      object-fit: contain; border-radius: 4px; 
+    }
+
+    /* 5페이지 전용 비디오 백그라운드 */
+    .id-bg-video-wrap {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      z-index: 1; opacity: 0; transition: opacity 1s ease; pointer-events: none;
+    }
+    .id-bg-video-wrap.active { opacity: 1; }
+    .id-bg-video { width: 100%; height: 100%; object-fit: cover; }
 
     /* SECTION 5 - COLLECTION */
     #product { background-color: #000; }
@@ -208,7 +201,7 @@
     .gift-bonus { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 1rem; letter-spacing: 0.05em; color: var(--deep-grey); opacity: 0; transform: translateY(15px); transition: all 1s ease 0.5s; }
     .product-gift-wrap.active .gift-bonus { opacity: 1; transform: translateY(0); }
 
-    /* SECTION 6 - SCENT (스크롤 분리 반영) */
+    /* SECTION 6 - SCENT */
     #scent { background-color: #000; color: #fff; }
     .scent-step-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; }
     .scent-step-wrap.active { opacity: 1; pointer-events: auto; }
@@ -217,7 +210,6 @@
     .scent__overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.85)); z-index: 2; }
     .scent__content { position: relative; z-index: 10; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
     
-    /* SCENT Intro Step 1, 2 관련 스타일 수정 */
     .scent__intro h2 { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 2.6rem; line-height: 1.6; margin-bottom: 25px; color: #fff; opacity: 0; transform: translateY(20px); transition: 1.2s ease; }
     .scent__intro-sub { opacity: 0; transform: translateY(20px); transition: 1.2s ease 0.2s; }
     .scent__intro p { font-family: 'Noto Serif KR'; font-weight: 200; font-size: 1.2rem; color: rgba(255,255,255,0.7); }
@@ -225,7 +217,6 @@
     .scent__intro-rule span { padding: 8px 18px; border: 1px solid rgba(255,255,255,0.3); border-radius: 2px; margin: 0 3px; display: inline-block; }
     .scent__intro-rule b { padding: 0 8px; font-weight: 400; display: inline-block; }
 
-    /* scent-intro active 단계별 표출 제어 */
     .scent-step-wrap.active .scent__intro h2 { opacity: 1; transform: translateY(0); }
     .scent-step-wrap.show-sub .scent__intro-sub { opacity: 1; transform: translateY(0); }
 
@@ -364,58 +355,61 @@
   <section class="section" id="identity">
     <div class="section-headline">04. Brand Identity</div>
 
+    <!-- Step 1: Visual Mood -->
     <div class="id-step active">
       <div class="id-header">
         <h4>Visual Mood</h4>
         <p>리빈느가 지향하는 정제된 따뜻함과 기억의 미학</p>
       </div>
-      <div class="id-mood-grid">
-        <div class="id-mood-item md1"><img src="MOOD_01.jpg" alt=""></div>
-        <div class="id-mood-item md2"><img src="MOOD_02.jpg" alt=""></div>
-        <div class="id-mood-item md3"><img src="MOOD_03.jpg" alt=""></div>
-        <div class="id-mood-item md4"><img src="MOOD_04.jpg" alt=""></div>
-        <div class="id-mood-item md5"><img src="MOOD_05.jpg" alt=""></div>
+      <div class="id-full-asset-wrap">
+        <img class="id-full-img" src="visual.png" alt="Visual Mood">
       </div>
     </div>
 
+    <!-- Step 2: Brand Color -->
     <div class="id-step">
-      <div class="id-elements-grid">
-        <div class="id-color-area">
-          <div class="id-header"><h4>Brand Color</h4><p>리빈느의 깊이와 따뜻함을 상징하는 정제된 팔레트</p></div>
-          <div class="id-color-list">
-            <div class="id-color-bar cb-id1"><span>#DCDEE0 - COOL MIST</span></div>
-            <div class="id-color-bar cb-id2"><span>#969696 - STONE GREY</span></div>
-            <div class="id-color-bar cb-id3"><span>#F7F7F7 - IVORY CREAM</span></div>
-            <div class="id-color-bar cb-id4"><span>#424142 - CHARCOAL</span></div>
-          </div>
-        </div>
-        <div class="id-pattern-area">
-          <div class="id-header"><h4>Key Pattern</h4><p>공간 위 기억의 흔적, 찰나의 그림자가 남긴 기록</p></div>
-          <div class="id-pattern-img-box">
-            <img src="shadow_leaf.jpg" alt="">
-          </div>
-        </div>
+      <div class="id-header">
+        <h4>Brand Color</h4>
+        <p>리빈느의 깊이와 따뜻함을 상징하는 정제된 팔레트</p>
+      </div>
+      <div class="id-full-asset-wrap">
+        <img class="id-full-img" src="brandcolor.png" alt="Brand Color">
       </div>
     </div>
 
-    <div class="id-step" id="id-logo-all">
-      <div class="id-logo-all-wrap">
-        <div class="id-logo-row">
-          <span class="id-logo-label">Logotype</span>
-          <img src="logo_01.png" class="id-logo-asset wide" alt="Logotype">
-        </div>
-        <div class="id-logo-row">
-          <span class="id-logo-label">Typography</span>
-          <img src="logo_02.png" class="id-logo-asset wide" alt="Typography">
-        </div>
-        <div class="id-logo-row">
-          <span class="id-logo-label">Lettermark</span>
-          <img src="logo_03.png" class="id-logo-asset wide" alt="Lettermark">
-        </div>
-        <div class="id-logo-row">
-          <span class="id-logo-label">Symbol</span>
-          <img src="logo_04.png" class="id-logo-asset symbol" alt="Symbol">
-        </div>
+    <!-- Step 3: Brand Typeface -->
+    <div class="id-step">
+      <div class="id-header">
+        <h4>Brand Typeface</h4>
+        <p>리빈느의 우아함과 현대적 감각을 담아낸 서체 시스템</p>
+      </div>
+      <div class="id-full-asset-wrap">
+        <img class="id-full-img" src="brandtypo.png" alt="Brand Typeface">
+      </div>
+    </div>
+
+    <!-- Step 4: Brand Logo -->
+    <div class="id-step">
+      <div class="id-header">
+        <h4>Brand Logo</h4>
+        <p>브랜드의 정체성과 가치를 가시화한 시그니처 로고</p>
+      </div>
+      <div class="id-full-asset-wrap">
+        <img class="id-full-img" src="brandlogo.png" alt="Brand Logo">
+      </div>
+    </div>
+
+    <!-- Step 5: Brand Symbol -->
+    <div class="id-bg-video-wrap" id="id-simbol-bg">
+      <video class="id-bg-video" id="simbol-video" src="simbol.mp4" muted playsinline></video>
+    </div>
+    <div class="id-step">
+      <div class="id-header">
+        <h4>Brand Symbol</h4>
+        <p>공간과 기억을 잇는 리빈느만의 상징적 그래픽</p>
+      </div>
+      <div class="id-full-asset-wrap">
+        <img class="id-full-img" src="brandsimbol.png" alt="Brand Symbol">
       </div>
     </div>
   </section>
@@ -474,11 +468,10 @@
     </div>
   </section>
 
-  <!-- 06. SCENT (스크롤 순서 및 표출 방식 수정 완료) -->
+  <!-- 06. SCENT -->
   <section class="section" id="scent">
     <div class="section-headline">06. Scent Experience</div>
     
-    <!-- 인트로 섹션 (1, 2 스크롤로 분리) -->
     <div class="scent-step-wrap" id="scent-intro">
       <div class="scent__content">
         <div class="scent__intro">
@@ -495,7 +488,6 @@
       </div>
     </div>
 
-    <!-- 개별 향 상세 (3, 4, 5 스크롤) -->
     <div class="scent-step-wrap" id="scent-1">
       <div class="scent__bg-wrap"><video class="scent__video" src="scent_귤밭_bg.mp4" loop muted playsinline></video><div class="scent__overlay"></div></div>
       <div class="scent__content"><div class="scent__detail"><div class="scent__name">오후 두 시의 귤밭</div><p class="scent__desc">제주의 귤밭, 오후 두 시.<br>찬란한 햇살이 푸른 잎사귀에 내려앉고 달콤한 향이 바람에 실려 번집니다.</p><div class="note__grid"><div class="note__item"><div class="note__label">Top</div><div class="note__list">Lemon, Orange<br>Mandarin</div></div><div class="note__item"><div class="note__label">Mid</div><div class="note__list">Mint, Rose<br>Jasmin, Peach</div></div><div class="note__item"><div class="note__label">Base</div><div class="note__list">Musk, Ambergris<br>Guaiac Wood</div></div></div></div></div>
@@ -530,17 +522,35 @@
   const container = document.getElementById('main-container');
   const sections  = document.querySelectorAll('.section');
 
-  /*
-   * 섹션별 maxSteps 배열
-   * [0] hero      : 3
-   * [1] story     : 3
-   * [2] target    : 5
-   * [3] identity  : 3
-   * [4] product   : 3
-   * [5] scent     : 5 (Step 1: 타이틀 -> Step 2: 서브내용 -> Step 3~5: 향 3종)
-   * [6] vote      : 0
-   */
-  const maxSteps = [3, 3, 5, 3, 3, 5, 0];
+  const maxSteps = [3, 3, 5, 5, 3, 5, 0];
+
+  /* 핑퐁(정재생 -> 역재생 무한 반복) 로직 구현 */
+  const simbolVideo = document.getElementById('simbol-video');
+  let isReverse = false;
+  let pingpongInterval = null;
+
+  if (simbolVideo) {
+    simbolVideo.addEventListener('ended', () => {
+      isReverse = true;
+      startReversePlay();
+    });
+  }
+
+  function startReversePlay() {
+    clearInterval(pingpongInterval);
+    pingpongInterval = setInterval(() => {
+      if (isReverse) {
+        if (simbolVideo.currentTime <= 0.1) {
+          simbolVideo.currentTime = 0;
+          isReverse = false;
+          clearInterval(pingpongInterval);
+          simbolVideo.play();
+        } else {
+          simbolVideo.currentTime -= 0.04;
+        }
+      }
+    }, 40);
+  }
 
   window.addEventListener('wheel', (e) => {
     if (isAnimating) return;
@@ -600,20 +610,32 @@
       }
     }
 
+    /* [04] identity - 5 steps 제어 */
     if (sec.id === 'identity') {
       const idSteps = sec.querySelectorAll('.id-step');
+      const bgVideoWrap = document.getElementById('id-simbol-bg');
+      
       idSteps.forEach(s => s.classList.remove('active'));
-      sec.classList.remove('step-pattern-visible');
+      bgVideoWrap.classList.remove('active');
+      
+      if (simbolVideo) {
+        simbolVideo.pause();
+        clearInterval(pingpongInterval);
+      }
 
-      if (currentStep === 0) {
-        idSteps[0].classList.add('active');
-      } else if (currentStep === 1) {
-        idSteps[1].classList.add('active');
-      } else if (currentStep === 2) {
-        idSteps[1].classList.add('active');
-        sec.classList.add('step-pattern-visible');
-      } else if (currentStep === 3) {
-        idSteps[2].classList.add('active');
+      const stepIdx = Math.max(0, currentStep - 1);
+      if (idSteps[stepIdx]) {
+        idSteps[stepIdx].classList.add('active');
+      }
+
+      /* Step 5일 때 배경 비디오 동작 */
+      if (currentStep === 5) {
+        bgVideoWrap.classList.add('active');
+        if (simbolVideo) {
+          simbolVideo.currentTime = 0;
+          isReverse = false;
+          simbolVideo.play();
+        }
       }
     }
 
@@ -640,11 +662,6 @@
       }
     }
 
-    /* [06] scent - 스크롤 스텝 제어
-     *  Step 1 : 타이틀만 등장
-     *  Step 2 : 하단 내용 추가 등장
-     *  Step 3~5 : 각 향 비디오 및 정보 등장
-     */
     if (sec.id === 'scent') {
       const steps = sec.querySelectorAll('.scent-step-wrap');
       steps.forEach(s => {
@@ -683,6 +700,11 @@
     const themes = ['on-dark', 'on-warm', 'on-warm', 'on-light', 'on-dark', 'on-dark', 'on-dark'];
     document.body.className = themes[currentSection] || 'on-dark';
 
+    if (sections[currentSection].id === 'identity' && currentStep === 0) {
+      currentStep = 1;
+    }
+
+    updateAnimation();
     setTimeout(() => { isAnimating = false; }, 1100);
   }
 
