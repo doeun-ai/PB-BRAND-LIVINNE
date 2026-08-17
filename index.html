@@ -133,30 +133,25 @@
       transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); 
       display: flex; flex-direction: column; align-items: center; justify-content: center; 
       padding: 90px 8vw 40px; 
-      z-index: 2;
     }
     .id-step.active { opacity: 1; visibility: visible; }
     .id-header { width: 100%; max-width: 1200px; margin-bottom: 25px; text-align: center; }
     .id-header h4 { font-family: 'Montserrat'; font-size: 0.9rem; letter-spacing: 0.3em; text-transform: uppercase; color: #bbb; margin-bottom: 10px; }
     .id-header p { font-family: 'Noto Sans KR'; font-size: 0.95rem; font-weight: 300; color: #777; line-height: 1.6; }
 
-    /* 통 이미지 컨테이너 */
     .id-full-asset-wrap { 
       width: 100%; max-width: 1200px; 
       display: flex; flex-direction: column; align-items: center; justify-content: center; 
+      gap: 20px; 
     }
     .id-full-img { 
       width: 100%; max-height: 60vh; 
       object-fit: contain; border-radius: 4px; 
     }
-
-    /* 5페이지 전용 비디오 백그라운드 */
-    .id-bg-video-wrap {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      z-index: 1; opacity: 0; transition: opacity 1s ease; pointer-events: none;
+    .id-full-video { 
+      width: 100%; max-height: 32vh; 
+      object-fit: contain; border-radius: 4px; 
     }
-    .id-bg-video-wrap.active { opacity: 1; }
-    .id-bg-video { width: 100%; height: 100%; object-fit: cover; }
 
     /* SECTION 5 - COLLECTION */
     #product { background-color: #000; }
@@ -351,7 +346,7 @@
     </div>
   </section>
 
-  <!-- 04. IDENTITY -->
+  <!-- 04. IDENTITY (설명 문구 추가 완료) -->
   <section class="section" id="identity">
     <div class="section-headline">04. Brand Identity</div>
 
@@ -381,7 +376,7 @@
     <div class="id-step">
       <div class="id-header">
         <h4>Brand Typeface</h4>
-        <p>리빈느의 우아함과 현대적 감각을 담아낸 서체 시스템</p>
+        <p>공간의 분위기를 정제된 서체로 기록하는 리빈느의 타이포그래피</p>
       </div>
       <div class="id-full-asset-wrap">
         <img class="id-full-img" src="brandtypo.png" alt="Brand Typeface">
@@ -392,7 +387,7 @@
     <div class="id-step">
       <div class="id-header">
         <h4>Brand Logo</h4>
-        <p>브랜드의 정체성과 가치를 가시화한 시그니처 로고</p>
+        <p>기억과 삶을 하나의 선으로 연결하는 시그니처 로고</p>
       </div>
       <div class="id-full-asset-wrap">
         <img class="id-full-img" src="brandlogo.png" alt="Brand Logo">
@@ -400,15 +395,13 @@
     </div>
 
     <!-- Step 5: Brand Symbol -->
-    <div class="id-bg-video-wrap" id="id-simbol-bg">
-      <video class="id-bg-video" id="simbol-video" src="simbol.mp4" muted playsinline></video>
-    </div>
     <div class="id-step">
       <div class="id-header">
         <h4>Brand Symbol</h4>
-        <p>공간과 기억을 잇는 리빈느만의 상징적 그래픽</p>
+        <p>공간 속에 스며드는 찰나의 순간을 상징하는 심볼 디자인</p>
       </div>
       <div class="id-full-asset-wrap">
+        <video class="id-full-video" src="brandsimbol.mp4" loop muted playsinline></video>
         <img class="id-full-img" src="brandsimbol.png" alt="Brand Symbol">
       </div>
     </div>
@@ -524,34 +517,6 @@
 
   const maxSteps = [3, 3, 5, 5, 3, 5, 0];
 
-  /* 핑퐁(정재생 -> 역재생 무한 반복) 로직 구현 */
-  const simbolVideo = document.getElementById('simbol-video');
-  let isReverse = false;
-  let pingpongInterval = null;
-
-  if (simbolVideo) {
-    simbolVideo.addEventListener('ended', () => {
-      isReverse = true;
-      startReversePlay();
-    });
-  }
-
-  function startReversePlay() {
-    clearInterval(pingpongInterval);
-    pingpongInterval = setInterval(() => {
-      if (isReverse) {
-        if (simbolVideo.currentTime <= 0.1) {
-          simbolVideo.currentTime = 0;
-          isReverse = false;
-          clearInterval(pingpongInterval);
-          simbolVideo.play();
-        } else {
-          simbolVideo.currentTime -= 0.04;
-        }
-      }
-    }, 40);
-  }
-
   window.addEventListener('wheel', (e) => {
     if (isAnimating) return;
     e.deltaY > 0 ? handleNext() : handlePrev();
@@ -610,32 +575,20 @@
       }
     }
 
-    /* [04] identity - 5 steps 제어 */
     if (sec.id === 'identity') {
       const idSteps = sec.querySelectorAll('.id-step');
-      const bgVideoWrap = document.getElementById('id-simbol-bg');
-      
       idSteps.forEach(s => s.classList.remove('active'));
-      bgVideoWrap.classList.remove('active');
       
-      if (simbolVideo) {
-        simbolVideo.pause();
-        clearInterval(pingpongInterval);
-      }
+      const symbolVideo = sec.querySelector('.id-full-video');
+      if (symbolVideo) symbolVideo.pause();
 
       const stepIdx = Math.max(0, currentStep - 1);
       if (idSteps[stepIdx]) {
         idSteps[stepIdx].classList.add('active');
       }
 
-      /* Step 5일 때 배경 비디오 동작 */
-      if (currentStep === 5) {
-        bgVideoWrap.classList.add('active');
-        if (simbolVideo) {
-          simbolVideo.currentTime = 0;
-          isReverse = false;
-          simbolVideo.play();
-        }
+      if (currentStep === 5 && symbolVideo) {
+        symbolVideo.play();
       }
     }
 
