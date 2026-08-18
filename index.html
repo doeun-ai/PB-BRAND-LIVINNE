@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;700&family=Noto+Serif+KR:wght@200;300;500&family=Sorts+Mill+Goudy&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── [SECTION 1-6 원본 스타일 100% 보존 및 수정] ── */
+    /* ── [GLOBAL & BASE] ── */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     :root {
       --dark: #0d0d0d;
@@ -45,55 +45,76 @@
     .dot-item.active .dot { background: #fff; border-color: #fff; transform: scale(1.5); }
     .on-light .dot-item.active .dot, .on-warm .dot-item.active .dot { background: var(--deep-grey); border-color: var(--deep-grey); }
 
-    /* SECTION 1 - HERO */
-    .hero__video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-    .hero__overlay { position:absolute; inset:0; background:rgba(0,0,0,0.4); z-index: 1; }
+    /* ── [SECTION 1 - HERO : 빛 무리 제거 및 정제된 시네마틱 연출] ── */
+    .hero__video { 
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; 
+      filter: blur(25px) scale(1.15); 
+      transition: filter 1.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .hero__overlay { 
+      position:absolute; inset:0; 
+      background: rgba(0,0,0,0.85); 
+      z-index: 1; 
+      transition: background 1.8s ease;
+    }
     .hero__content { position: relative; z-index: 2; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .hero__line-wrap { width: 90vw; height: 2px; margin-bottom: 40px; overflow: hidden; display: flex; justify-content: center; }
-    .hero__line { display: block; width: 100%; height: 100%; background: var(--line-color); transform: scaleX(0); opacity: 0; transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
-    .hero__text-block { text-align: center; display: flex; flex-direction: column; align-items: center; }
-    .hero__slogan { font-size: clamp(1.4rem, 2.4vw, 2rem); font-family: 'Noto Serif KR', serif; font-weight: 200; letter-spacing: 0.4em; color: var(--slogan-color); margin-bottom: 40px; opacity: 0; transform: translateY(20px); transition: 1.2s ease; width: 100%; text-align: center; }
-    .hero__logo { width: clamp(340px, 42vw, 700px); filter: brightness(0) invert(1); opacity: 0; transform: translateY(20px); transition: 1.2s ease; }
-    .hero__brand-kr { display: block; margin-top: 30px; font-family: 'Noto Serif KR', serif; font-weight: 200; font-size: 1.1rem; letter-spacing: 0.6em; color: var(--sub-color); opacity: 0; transform: translateY(10px); transition: 1.2s ease; width: 100%; text-align: center; }
-    .s1-step1 .hero__line { transform: scaleX(1); opacity: 1; }
-    .s1-step2 .hero__slogan { opacity: 1; transform: translateY(0); }
-    .s1-step3 .hero__logo, .s1-step3 .hero__brand-kr { opacity: 1; transform: translateY(0); }
 
-    /* SECTION 2 - STORY */
+    .hero__text-block { text-align: center; display: flex; flex-direction: column; align-items: center; z-index: 3; }
+    .hero__slogan { 
+      font-size: clamp(1.4rem, 2.5vw, 2.2rem); 
+      font-family: 'Noto Serif KR', serif; font-weight: 200; 
+      letter-spacing: 0.45em; color: var(--slogan-color); 
+      margin-bottom: 30px; 
+      opacity: 0; transform: translateY(30px); 
+      transition: opacity 1.4s ease, transform 1.4s ease; 
+      width: 100%; text-align: center; 
+    }
+    .hero__logo { 
+      width: clamp(340px, 42vw, 700px); 
+      filter: brightness(0) invert(1); 
+      opacity: 0; transform: scale(0.92) translateY(20px); 
+      transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.22, 1, 0.36, 1); 
+    }
+    .hero__brand-kr { 
+      display: block; margin-top: 30px; 
+      font-family: 'Noto Serif KR', serif; font-weight: 200; 
+      font-size: 1.1rem; letter-spacing: 0.6em; color: var(--sub-color); 
+      opacity: 0; transform: translateY(15px); 
+      transition: opacity 1.2s ease 0.2s, transform 1.2s ease 0.2s; 
+      width: 100%; text-align: center; 
+    }
+
+    /* Hero Step 1: 스크롤 시 블러 해제 & 슬로건 페이드인 */
+    .s1-step1 .hero__video { filter: blur(0px) scale(1); }
+    .s1-step1 .hero__overlay { background: rgba(0,0,0,0.45); }
+    .s1-step1 .hero__slogan { opacity: 1; transform: translateY(0); }
+
+    /* Hero Step 2: 로고 및 한글 네이밍 정제되게 등장 */
+    .s1-step2 .hero__logo { opacity: 1; transform: scale(1) translateY(0); }
+    .s1-step2 .hero__brand-kr { opacity: 1; transform: translateY(0); }
+
+    /* ── [SECTION 2 - STORY] ── */
     #story { background-color: var(--cream); }
     .story__bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.55; }
     .story__content { position:relative; z-index: 2; width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 6vw; }
     .story__img-wrap { 
-      position: relative; 
-      width: min(60vw, 820px); 
-      height: clamp(90px, 12vw, 160px); 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 55px; 
+      position: relative; width: min(60vw, 820px); height: clamp(90px, 12vw, 160px); 
+      display: flex; align-items: center; justify-content: center; margin-bottom: 55px; 
       transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), margin-bottom 1.2s ease; 
     }
     .story__img { 
-      position: absolute; 
-      top: 50%; 
-      left: 50%; 
-      width: 100%; 
-      height: 100%; 
-      object-fit: contain; 
-      object-position: center center; 
-      transform: translate(-50%, -50%); 
-      opacity: 0; 
-      transition: opacity 1.3s ease; 
+      position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; 
+      object-fit: contain; object-position: center center; 
+      transform: translate(-50%, -50%); opacity: 0; transition: opacity 1.3s ease; 
     }
     .s2-step1 .story__img--spread { opacity: 1; }
     .s2-step2 .story__img--spread { opacity: 0; }
-    .s2-step2 .story__img--condensed,
-    .s2-step3 .story__img--condensed { opacity: 1; }
+    .s2-step2 .story__img--condensed, .s2-step3 .story__img--condensed { opacity: 1; }
     .s2-step3 .story__img-wrap { transform: translateY(-30px); margin-bottom: 15px; }
     .story__body { font-family:'Noto Serif KR',serif; font-weight:350; font-size:1.1rem; line-height:2.2; letter-spacing:0.08em; color: var(--deep-grey); text-align:center; opacity: 0; transform: translateY(20px); transition: all 1s ease 0.2s; }
     .s2-step3 .story__body { opacity: 1; transform: translateY(0); }
 
-    /* SECTION 3 - TARGET & POSITIONING */
+    /* ── [SECTION 3 - TARGET & POSITIONING] ── */
     #target { background-color: var(--warm-grey); }
     .target__content { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; }
     .tg-step-view { position: absolute; width: 80vw; max-width: 1200px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; opacity: 0; transform: translateY(30px); transition: all 1s ease; pointer-events: none; }
@@ -125,43 +146,26 @@
     .tg-active-5 .brand-chip:not(.chip-livinne) { opacity: 0.35; transform: scale(0.9); filter: grayscale(0.5) blur(1px); }
     .tg-active-5 .chip-livinne { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
-    /* SECTION 4 - IDENTITY */
+    /* ── [SECTION 4 - IDENTITY] ── */
     #identity { background-color: #ffffff; }
     .id-step { 
       position: absolute; inset: 0; width: 100%; height: 100%; 
-      opacity: 0; 
-      visibility: hidden; 
-      pointer-events: none;
+      opacity: 0; visibility: hidden; pointer-events: none;
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s; 
       display: flex; flex-direction: column; align-items: center; justify-content: center; 
       padding: 90px 8vw 40px; 
     }
-    .id-step.active { 
-      opacity: 1; 
-      visibility: visible; 
-      pointer-events: auto;
-      transform: translateY(0);
-    }
+    .id-step.active { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); }
     .id-header { width: 100%; max-width: 1200px; margin-bottom: 25px; text-align: center; }
     .id-header h4 { font-family: 'Montserrat'; font-size: 0.9rem; letter-spacing: 0.3em; text-transform: uppercase; color: #bbb; margin-bottom: 10px; }
     .id-header p { font-family: 'Noto Sans KR'; font-size: 0.95rem; font-weight: 300; color: #777; line-height: 1.6; }
 
-    .id-full-asset-wrap { 
-      width: 100%; max-width: 1200px; 
-      display: flex; flex-direction: column; align-items: center; justify-content: center; 
-      gap: 20px; 
-    }
-    .id-full-img { 
-      width: 100%; max-height: 60vh; 
-      object-fit: contain; border-radius: 4px; 
-    }
-    .id-full-video { 
-      width: 100%; max-height: 32vh; 
-      object-fit: contain; border-radius: 4px; 
-    }
+    .id-full-asset-wrap { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
+    .id-full-img { width: 100%; max-height: 60vh; object-fit: contain; border-radius: 4px; }
+    .id-full-video { width: 100%; max-height: 32vh; object-fit: contain; border-radius: 4px; }
 
-    /* SECTION 5 - COLLECTION */
+    /* ── [SECTION 5 - COLLECTION] ── */
     #product { background-color: #000; }
     .product-step-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; }
     .product-step-wrap.active { opacity: 1; pointer-events: auto; }
@@ -204,7 +208,7 @@
     .gift-bonus { font-family: 'Noto Serif KR'; font-weight: 300; font-size: 1rem; letter-spacing: 0.05em; color: var(--deep-grey); opacity: 0; transform: translateY(15px); transition: all 1s ease 0.5s; }
     .product-gift-wrap.active .gift-bonus { opacity: 1; transform: translateY(0); }
 
-    /* SECTION 6 - SCENT */
+    /* ── [SECTION 6 - SCENT] ── */
     #scent { background-color: #000; color: #fff; }
     .scent-step-wrap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: all 1s ease; }
     .scent-step-wrap.active { opacity: 1; pointer-events: auto; }
@@ -231,7 +235,7 @@
     .note__list { font-family: 'Noto Serif KR'; font-size: 1.1rem; font-weight: 300; line-height: 2; color: rgba(255,255,255,0.9); }
     .active .scent__name, .active .scent__desc, .active .note__grid { opacity: 1; transform: translateY(0); }
 
-    /* SECTION 7 - EPILOGUE */
+    /* ── [SECTION 7 - EPILOGUE] ── */
     #vote { background-color: #000; }
     .vote__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .vote__overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4); z-index: 1; }
@@ -255,6 +259,7 @@
 </head>
 <body class="on-dark">
 
+<!-- 내비게이션 도트 -->
 <div class="nav-dots">
   <div class="dot-item active" onclick="goToSection(0)"><span class="dot-label">Intro</span><div class="dot"></div></div>
   <div class="dot-item" onclick="goToSection(1)"><span class="dot-label">Story</span><div class="dot"></div></div>
@@ -267,11 +272,11 @@
 
 <div class="container" id="main-container">
 
+  <!-- 01. INTRO -->
   <section class="section active-sec" id="hero">
     <video class="hero__video" src="livinne_hero.mp4" autoplay loop muted playsinline></video>
     <div class="hero__overlay"></div>
     <div class="hero__content">
-      <div class="hero__line-wrap"><span class="hero__line"></span></div>
       <div class="hero__text-block">
         <p class="hero__slogan">기억이 머무는 공간</p>
         <img class="hero__logo" src="logo_black.png" alt="LIVINNE">
@@ -280,6 +285,7 @@
     </div>
   </section>
 
+  <!-- 02. STORY -->
   <section class="section" id="story">
     <div class="section-headline">02. Brand Story</div>
     <img class="story__bg" src="livinne_story_bg.png" alt="">
@@ -292,6 +298,7 @@
     </div>
   </section>
 
+  <!-- 03. TARGET & POSITIONING -->
   <section class="section" id="target">
     <div class="section-headline">03. Target &amp; Positioning</div>
     <div class="target__content">
@@ -350,6 +357,7 @@
     </div>
   </section>
 
+  <!-- 04. IDENTITY -->
   <section class="section" id="identity">
     <div class="section-headline">04. Brand Identity</div>
 
@@ -405,6 +413,7 @@
     </div>
   </section>
 
+  <!-- 05. COLLECTION -->
   <section class="section" id="product">
     <div class="section-headline">05. Collection</div>
 
@@ -458,6 +467,7 @@
     </div>
   </section>
 
+  <!-- 06. SCENT -->
   <section class="section" id="scent">
     <div class="section-headline">06. Scent Experience</div>
     
@@ -491,6 +501,7 @@
     </div>
   </section>
 
+  <!-- 07. EPILOGUE -->
   <section class="section" id="vote">
     <img class="vote__bg" src="livinne_closing_bg.jpg" alt="">
     <div class="vote__overlay"></div>
@@ -510,7 +521,7 @@
   const container = document.getElementById('main-container');
   const sections  = document.querySelectorAll('.section');
 
-  const maxSteps = [3, 3, 5, 5, 3, 5, 0];
+  const maxSteps = [2, 3, 5, 5, 3, 5, 0];
 
   window.addEventListener('wheel', (e) => {
     if (isAnimating) return;
@@ -554,7 +565,6 @@
     if (sec.id === 'hero') {
       sec.classList.toggle('s1-step1', currentStep >= 1);
       sec.classList.toggle('s1-step2', currentStep >= 2);
-      sec.classList.toggle('s1-step3', currentStep >= 3);
     }
 
     if (sec.id === 'story') {
@@ -570,7 +580,6 @@
       }
     }
 
-    /* [04] identity - Step 0(빈화면)부터 시작하도록 조정 */
     if (sec.id === 'identity') {
       const idSteps = sec.querySelectorAll('.id-step');
       idSteps.forEach(s => s.classList.remove('active'));
@@ -578,8 +587,6 @@
       const symbolVideo = sec.querySelector('.id-full-video');
       if (symbolVideo) symbolVideo.pause();
 
-      // currentStep === 0: 빈 화면 (아무것도 active 처리하지 않음)
-      // currentStep === 1~5: 해당하는 idStep을 active 처리
       if (currentStep >= 1 && currentStep <= 5) {
         idSteps[currentStep - 1].classList.add('active');
       }
