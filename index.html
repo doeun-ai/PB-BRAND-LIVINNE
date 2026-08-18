@@ -125,7 +125,7 @@
     .tg-active-5 .brand-chip:not(.chip-livinne) { opacity: 0.35; transform: scale(0.9); filter: grayscale(0.5) blur(1px); }
     .tg-active-5 .chip-livinne { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
-    /* SECTION 4 - IDENTITY (부드러운 페이드 트랜지션 보완) */
+    /* SECTION 4 - IDENTITY */
     #identity { background-color: #ffffff; }
     .id-step { 
       position: absolute; inset: 0; width: 100%; height: 100%; 
@@ -255,7 +255,6 @@
 </head>
 <body class="on-dark">
 
-<!-- 내비게이션 도트 -->
 <div class="nav-dots">
   <div class="dot-item active" onclick="goToSection(0)"><span class="dot-label">Intro</span><div class="dot"></div></div>
   <div class="dot-item" onclick="goToSection(1)"><span class="dot-label">Story</span><div class="dot"></div></div>
@@ -268,7 +267,6 @@
 
 <div class="container" id="main-container">
 
-  <!-- 01. INTRO -->
   <section class="section active-sec" id="hero">
     <video class="hero__video" src="livinne_hero.mp4" autoplay loop muted playsinline></video>
     <div class="hero__overlay"></div>
@@ -282,7 +280,6 @@
     </div>
   </section>
 
-  <!-- 02. STORY -->
   <section class="section" id="story">
     <div class="section-headline">02. Brand Story</div>
     <img class="story__bg" src="livinne_story_bg.png" alt="">
@@ -295,7 +292,6 @@
     </div>
   </section>
 
-  <!-- 03. TARGET & POSITIONING -->
   <section class="section" id="target">
     <div class="section-headline">03. Target &amp; Positioning</div>
     <div class="target__content">
@@ -354,12 +350,10 @@
     </div>
   </section>
 
-  <!-- 04. IDENTITY -->
   <section class="section" id="identity">
     <div class="section-headline">04. Brand Identity</div>
 
-    <!-- Step 1: Visual Mood -->
-    <div class="id-step active">
+    <div class="id-step">
       <div class="id-header">
         <h4>Visual Mood</h4>
         <p>리빈느가 지향하는 정제된 따뜻함과 기억의 미학</p>
@@ -369,7 +363,6 @@
       </div>
     </div>
 
-    <!-- Step 2: Brand Color -->
     <div class="id-step">
       <div class="id-header">
         <h4>Brand Color</h4>
@@ -380,7 +373,6 @@
       </div>
     </div>
 
-    <!-- Step 3: Brand Typeface -->
     <div class="id-step">
       <div class="id-header">
         <h4>Brand Typeface</h4>
@@ -391,7 +383,6 @@
       </div>
     </div>
 
-    <!-- Step 4: Brand Logo -->
     <div class="id-step">
       <div class="id-header">
         <h4>Brand Logo</h4>
@@ -402,7 +393,6 @@
       </div>
     </div>
 
-    <!-- Step 5: Brand Symbol -->
     <div class="id-step">
       <div class="id-header">
         <h4>Brand Symbol</h4>
@@ -415,7 +405,6 @@
     </div>
   </section>
 
-  <!-- 05. COLLECTION -->
   <section class="section" id="product">
     <div class="section-headline">05. Collection</div>
 
@@ -469,7 +458,6 @@
     </div>
   </section>
 
-  <!-- 06. SCENT -->
   <section class="section" id="scent">
     <div class="section-headline">06. Scent Experience</div>
     
@@ -503,7 +491,6 @@
     </div>
   </section>
 
-  <!-- 07. EPILOGUE -->
   <section class="section" id="vote">
     <img class="vote__bg" src="livinne_closing_bg.jpg" alt="">
     <div class="vote__overlay"></div>
@@ -583,6 +570,7 @@
       }
     }
 
+    /* [04] identity - Step 0(빈화면)부터 시작하도록 조정 */
     if (sec.id === 'identity') {
       const idSteps = sec.querySelectorAll('.id-step');
       idSteps.forEach(s => s.classList.remove('active'));
@@ -590,9 +578,10 @@
       const symbolVideo = sec.querySelector('.id-full-video');
       if (symbolVideo) symbolVideo.pause();
 
-      const stepIdx = Math.max(0, currentStep - 1);
-      if (idSteps[stepIdx]) {
-        idSteps[stepIdx].classList.add('active');
+      // currentStep === 0: 빈 화면 (아무것도 active 처리하지 않음)
+      // currentStep === 1~5: 해당하는 idStep을 active 처리
+      if (currentStep >= 1 && currentStep <= 5) {
+        idSteps[currentStep - 1].classList.add('active');
       }
 
       if (currentStep === 5 && symbolVideo) {
@@ -660,10 +649,6 @@
 
     const themes = ['on-dark', 'on-warm', 'on-warm', 'on-light', 'on-dark', 'on-dark', 'on-dark'];
     document.body.className = themes[currentSection] || 'on-dark';
-
-    if (sections[currentSection].id === 'identity' && currentStep === 0) {
-      currentStep = 1;
-    }
 
     updateAnimation();
     setTimeout(() => { isAnimating = false; }, 1100);
