@@ -6,7 +6,7 @@
   <title>LIVINNE — 기억이 머무는 공간</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;700&family=Noto+Serif+KR:wght@200;300;500&family=Sorts+Mill+Goudy&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;700&family=Noto+Serif+KR:wght@200;300;500;700&family=Sorts+Mill+Goudy&display=swap" rel="stylesheet" />
 
   <style>
     /* ── [GLOBAL & BASE] ── */
@@ -45,7 +45,7 @@
     .dot-item.active .dot { background: #fff; border-color: #fff; transform: scale(1.5); }
     .on-light .dot-item.active .dot, .on-warm .dot-item.active .dot { background: var(--deep-grey); border-color: var(--deep-grey); }
 
-    /* ── [SECTION 1 - HERO : 빛 무리 제거 및 정제된 시네마틱 연출] ── */
+    /* ── [SECTION 1 - HERO] ── */
     .hero__video { 
       position:absolute; inset:0; width:100%; height:100%; object-fit:cover; 
       filter: blur(25px) scale(1.15); 
@@ -84,12 +84,10 @@
       width: 100%; text-align: center; 
     }
 
-    /* Hero Step 1: 스크롤 시 블러 해제 & 슬로건 페이드인 */
     .s1-step1 .hero__video { filter: blur(0px) scale(1); }
     .s1-step1 .hero__overlay { background: rgba(0,0,0,0.45); }
     .s1-step1 .hero__slogan { opacity: 1; transform: translateY(0); }
 
-    /* Hero Step 2: 로고 및 한글 네이밍 정제되게 등장 */
     .s1-step2 .hero__logo { opacity: 1; transform: scale(1) translateY(0); }
     .s1-step2 .hero__brand-kr { opacity: 1; transform: translateY(0); }
 
@@ -98,21 +96,30 @@
     .story__bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.55; }
     .story__content { position:relative; z-index: 2; width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 6vw; }
     .story__img-wrap { 
-      position: relative; width: min(60vw, 820px); height: clamp(90px, 12vw, 160px); 
-      display: flex; align-items: center; justify-content: center; margin-bottom: 55px; 
-      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), margin-bottom 1.2s ease; 
+      position: relative; width: min(60vw, 820px); height: clamp(70px, 10vw, 120px); 
+      display: flex; align-items: center; justify-content: center; margin-bottom: 25px; 
+      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1); 
     }
     .story__img { 
       position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; 
       object-fit: contain; object-position: center center; 
-      transform: translate(-50%, -50%); opacity: 0; transition: opacity 1.3s ease; 
+      transform: translate(-50%, -50%); opacity: 0; transition: opacity 1.2s ease; 
     }
     .s2-step1 .story__img--spread { opacity: 1; }
     .s2-step2 .story__img--spread { opacity: 0; }
-    .s2-step2 .story__img--condensed, .s2-step3 .story__img--condensed { opacity: 1; }
-    .s2-step3 .story__img-wrap { transform: translateY(-30px); margin-bottom: 15px; }
-    .story__body { font-family:'Noto Serif KR',serif; font-weight:350; font-size:1.1rem; line-height:2.2; letter-spacing:0.08em; color: var(--deep-grey); text-align:center; opacity: 0; transform: translateY(20px); transition: all 1s ease 0.2s; }
-    .s2-step3 .story__body { opacity: 1; transform: translateY(0); }
+    .s2-step2 .story__img--condensed { opacity: 1; }
+    
+    .story__body { 
+      font-family:'Noto Serif KR',serif; font-weight:350; font-size:1.05rem; line-height:2.1; letter-spacing:0.06em; color: var(--deep-grey); text-align:center; 
+      opacity: 0; transform: translateY(20px); transition: opacity 1s ease 0.2s, transform 1s ease 0.2s; 
+    }
+    .s2-step1 .story__body, .s2-step2 .story__body { opacity: 1; transform: translateY(0); }
+
+    /* 텍스트 크기는 100% 동일하게 유지하고 볼드 효과만 부여 */
+    .story__highlight {
+      font-weight: 700;
+      color: #111;
+    }
 
     /* ── [SECTION 3 - TARGET & POSITIONING] ── */
     #target { background-color: var(--warm-grey); }
@@ -294,7 +301,13 @@
         <img class="story__img story__img--spread" src="LIVEINLINE.png" alt="LIVE IN LINE">
         <img class="story__img story__img--condensed" src="LIVINNE.png" alt="LIVINNE">
       </div>
-      <p class="story__body">우리가 사랑하는 공간에는 저마다의 향기가 있습니다. <br /><br />향기는 기억과 가장 가까운 감각이기에,<br />그 향기가 다시 코끝에 닿는 순간 우리는 어느새 그 공간 속에 서있습니다.<br /><br />리빈느(LIVINNE)는 우리가 숨 쉬고, 사랑하고, 머물렀던 공간의 향기를 당신의 공간으로 데려옵니다. <br />흩어진 순간들을 하나의 선(Line)으로 이어 — 오늘을 살아가도록(Live).<br /><br />당신의 가장 소중한 공간이 늘 아름다운 기억으로 채워지기를 바랍니다. <br />리빈느가 머무는 그곳에서, 당신의 삶은 더 깊고 온전해집니다.</p>
+      <p class="story__body">
+        우리가 사랑하는 공간에는 저마다의 향기가 있습니다. <br /><br />
+        향기는 기억과 가장 가까운 감각이기에,<br />그 향기가 다시 코끝에 닿는 순간 우리는 어느새 그 공간 속에 서있습니다.<br /><br />
+        <span class="story__highlight">리빈느(LIVINNE)는 우리가 숨 쉬고, 사랑하고, 머물렀던 공간의 향기를 당신의 공간으로 데려옵니다. <br />흩어진 순간들을 하나의 선(Line)으로 이어 — 오늘을 살아가도록(Live).</span><br /><br />
+        당신의 가장 소중한 공간이 늘 아름다운 기억으로 채워지기를 바랍니다. <br />
+        리빈느가 머무는 그곳에서, 당신의 삶은 더 깊고 온전해집니다.
+      </p>
     </div>
   </section>
 
@@ -341,17 +354,17 @@
           <span class="axis-label label-high">High Price</span>
           <span class="axis-label label-low">Low Price</span>
         </div>
-        <div class="brand-chip chip-jomalone" style="background-image: url('jomalone.jpg')"><div class="info"><b>조말론</b>16.0</div></div>
-        <div class="brand-chip chip-kinfolk" style="background-image: url('kinfolk.jpg')"><div class="info"><b>킨포크 노츠</b>15.0</div></div>
-        <div class="brand-chip chip-paradise" style="background-image: url('paradise.jpg')"><div class="info"><b>파라다이스</b>5.2</div></div>
-        <div class="brand-chip chip-pcoll" style="background-image: url('pcollection.jpg')"><div class="info"><b>P Collection</b>6.0</div></div>
-        <div class="brand-chip chip-doson" style="background-image: url('doson.jpg')"><div class="info"><b>호텔도슨</b>6.3</div></div>
-        <div class="brand-chip chip-page" style="background-image: url('page.jpg')"><div class="info"><b>센트오브페이지</b>5.8</div></div>
-        <div class="brand-chip chip-bibiang" style="background-image: url('bibiang.jpg')"><div class="info"><b>비비앙</b>4.8</div></div>
-        <div class="brand-chip chip-hetras" style="background-image: url('hetras.jpg')"><div class="info"><b>헤트라스</b>1.8</div></div>
-        <div class="brand-chip chip-kundal" style="background-image: url('kundal.jpg')"><div class="info"><b>쿤달</b>4.0</div></div>
-        <div class="brand-chip chip-cocodor" style="background-image: url('cocodor.jpg')"><div class="info"><b>코코도르</b>0.9</div></div>
-        <div class="brand-chip chip-round" style="background-image: url('round.jpg')"><div class="info"><b>라운드어라운드</b>1.1</div></div>
+        <div class="brand-chip chip-jomalone" style="background-image: url('jomalone.jpg')"><div class="info"><b>조말론</b><br>160,000</div></div>
+        <div class="brand-chip chip-kinfolk" style="background-image: url('kinfolk.jpg')"><div class="info"><b>킨포크 노츠</b><br>150,000</div></div>
+        <div class="brand-chip chip-paradise" style="background-image: url('paradise.jpg')"><div class="info"><b>파라다이스</b><br>52,000</div></div>
+        <div class="brand-chip chip-pcoll" style="background-image: url('pcollection.jpg')"><div class="info"><b>P Collection</b><br>60,000</div></div>
+        <div class="brand-chip chip-doson" style="background-image: url('doson.jpg')"><div class="info"><b>호텔도슨</b><br>63,000</div></div>
+        <div class="brand-chip chip-page" style="background-image: url('page.jpg')"><div class="info"><b>센트오브페이지</b><br>58,000</div></div>
+        <div class="brand-chip chip-bibiang" style="background-image: url('bibiang.jpg')"><div class="info"><b>비비앙</b><br>48,000</div></div>
+        <div class="brand-chip chip-hetras" style="background-image: url('hetras.jpg')"><div class="info"><b>헤트라스</b><br>18,000</div></div>
+        <div class="brand-chip chip-kundal" style="background-image: url('kundal.jpg')"><div class="info"><b>쿤달</b><br>40,000</div></div>
+        <div class="brand-chip chip-cocodor" style="background-image: url('cocodor.jpg')"><div class="info"><b>코코도르</b><br>9,000</div></div>
+        <div class="brand-chip chip-round" style="background-image: url('round.jpg')"><div class="info"><b>라운드어라운드</b><br>11,000</div></div>
         <div class="brand-chip chip-livinne"><span>LIVINNE</span><div class="price-tag">19,000 — 29,000</div></div>
       </div>
     </div>
@@ -521,7 +534,7 @@
   const container = document.getElementById('main-container');
   const sections  = document.querySelectorAll('.section');
 
-  const maxSteps = [2, 3, 5, 5, 3, 5, 0];
+  const maxSteps = [2, 2, 5, 5, 3, 5, 0];
 
   window.addEventListener('wheel', (e) => {
     if (isAnimating) return;
@@ -570,7 +583,6 @@
     if (sec.id === 'story') {
       sec.classList.toggle('s2-step1', currentStep >= 1);
       sec.classList.toggle('s2-step2', currentStep >= 2);
-      sec.classList.toggle('s2-step3', currentStep >= 3);
     }
 
     if (sec.id === 'target') {
